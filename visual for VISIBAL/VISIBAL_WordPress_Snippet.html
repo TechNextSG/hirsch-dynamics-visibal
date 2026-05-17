@@ -1,0 +1,88 @@
+<!-- ═══════════════════════════════════════════════════════════════════════
+     VISIBAL — Neuer Hero-Button: "Studie & Podcast"
+     
+     WO EINFÜGEN: WordPress Admin → Seiten → VISIBAL → Bearbeiten
+     Den bestehenden Hero-Bereich suchen (wo "Case Study ansehen" steht)
+     Diesen Button direkt daneben/darunter einfügen.
+     
+     ODER: In Elementor/Divi den Hero-Section Block öffnen →
+     Button-Element duplizieren → Text + Link anpassen.
+═══════════════════════════════════════════════════════════════════════ -->
+
+<!-- ── BUTTON: Studie & Podcast ── -->
+<a href="https://hirschdynamics.net/visibal-plattform"
+   style="display:inline-flex;
+          align-items:center;
+          gap:8px;
+          background:transparent;
+          color:#BDD7EE;
+          border:1.5px solid rgba(189,215,238,0.45);
+          padding:13px 24px;
+          border-radius:8px;
+          text-decoration:none;
+          font-size:0.92rem;
+          font-weight:500;
+          font-family:inherit;
+          transition:all 0.2s ease;
+          cursor:pointer;"
+   onmouseover="this.style.borderColor='#BDD7EE';this.style.color='#fff'"
+   onmouseout="this.style.borderColor='rgba(189,215,238,0.45)';this.style.color='#BDD7EE'">
+  🎙 Studie &amp; Podcast →
+</a>
+
+<!-- ── ODER: Als kompletter Hero-CTA Block (alle 3 Buttons) ──
+     Bestehenden Hero-Button-Bereich ERSETZEN mit diesem Block: -->
+
+<div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:32px;">
+
+  <!-- Button 1: Case Study (bestehend — nur Stil angepasst) -->
+  <a href="#case-study"
+     style="display:inline-flex;align-items:center;gap:8px;
+            background:#1A6BAF;color:#fff;
+            padding:13px 26px;border-radius:8px;text-decoration:none;
+            font-size:0.92rem;font-weight:600;font-family:inherit;transition:.15s;">
+    Case Study ansehen
+  </a>
+
+  <!-- Button 2: NEU — Studie & Podcast -->
+  <a href="https://hirschdynamics.net/visibal-plattform"
+     style="display:inline-flex;align-items:center;gap:8px;
+            background:transparent;color:#BDD7EE;
+            border:1.5px solid rgba(189,215,238,0.45);
+            padding:12px 22px;border-radius:8px;text-decoration:none;
+            font-size:0.9rem;font-weight:500;font-family:inherit;transition:.15s;">
+    🎙 Studie &amp; Podcast
+  </a>
+
+  <!-- Button 3: Gespräch (bestehend) -->
+  <a href="#contact"
+     style="display:inline-flex;align-items:center;gap:8px;
+            background:transparent;color:#BDD7EE;
+            border:1.5px solid rgba(189,215,238,0.45);
+            padding:12px 22px;border-radius:8px;text-decoration:none;
+            font-size:0.9rem;font-weight:500;font-family:inherit;transition:.15s;">
+    Gespräch vereinbaren →
+  </a>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SCHRITT-FÜR-SCHRITT ANLEITUNG:
+     
+     1. FTP/cPanel: VISIBAL_Godin_FINAL.html hochladen nach
+        /public_html/visibal-plattform/index.html
+        (oder /wp-content/uploads/visibal/VISIBAL_Godin_FINAL.html)
+     
+     2. Podcast-Dateien hochladen:
+        /public_html/visibal-plattform/VISIBAL_Podcast_Kurzfassung.m4a
+        /public_html/visibal-plattform/VISIBAL_Podcast_Langfassung.m4a
+     
+     3. WordPress Admin → Seiten → VISIBAL → Bearbeiten (Gutenberg):
+        - Zum Hero-Bereich scrollen
+        - Bestehende Buttons suchen ("Case Study ansehen")
+        - Neuen Button-Block hinzufügen: Text "🎙 Studie & Podcast"
+        - Link: https://hirschdynamics.net/visibal-plattform
+        - Stil: Ghost/Outline (passend zu bestehenden Buttons)
+     
+     4. Seite aktualisieren → fertig.
+═══════════════════════════════════════════════════════════════════════ -->

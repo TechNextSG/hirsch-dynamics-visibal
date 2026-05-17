@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact — Talk Directly to the CEO | HDH AG</title>
+<meta name="description" content="No sales team. No forms. No waiting. Contact CEO Linz Crawford directly. WhatsApp, phone, or email — response within 24 hours.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+/* ── CONTACT PAGE ─────────────────────────── */
+.contact-hero {
+  min-height:100vh; display:flex; align-items:center;
+  padding:9rem 0 5rem;
+  background:var(--grad-hero);
+  background-size:250% 250%;
+  animation:gradShift 14s ease infinite;
+}
+.contact-hero .wrap { width:100%; }
+.contact-hero h1 { font-size:clamp(2.4rem,5.5vw,4rem); font-weight:700; margin:1rem 0 1.25rem; color:#fff; }
+.contact-hero p { font-size:1.05rem; color:rgba(255,255,255,0.78); max-width:540px; line-height:1.85; }
+.contact-hero .label { color:rgba(255,255,255,0.78); }
+.contact-hero .label::before { background:rgba(255,255,255,0.42); }
+.contact-hero .back-link { color:rgba(255,255,255,0.52); }
+.contact-hero .back-link:hover { color:#fff; }
+
+.contact-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:3rem;
+}
+.contact-card {
+  background:var(--white);
+  border:1px solid var(--border-2);
+  border-radius:var(--r2); padding:2.5rem;
+  box-shadow:var(--shadow-sm);
+}
+.contact-card.featured {
+  border-color:var(--primary); border-width:2px;
+  grid-column:1 / -1;
+  display:grid; grid-template-columns:auto 1fr; gap:2.5rem; align-items:start;
+  box-shadow:var(--shadow-md);
+}
+.ceo-avatar {
+  width:88px; height:88px; border-radius:50%; flex-shrink:0;
+  background:var(--grad);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--ff-d); font-size:1.8rem; font-weight:700; color:#fff;
+  box-shadow:0 8px 28px rgba(79,70,229,0.35);
+}
+.contact-card h3 { font-family:var(--ff-d); font-size:1.5rem; font-weight:600; margin-bottom:4px; color:var(--text); }
+.contact-card-role { font-size:0.68rem; color:var(--primary); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:1.25rem; }
+.contact-card p { font-size:0.95rem; color:var(--text-2); line-height:1.8; margin-bottom:1.5rem; }
+.contact-method {
+  display:flex; align-items:center; gap:12px; padding:0.9rem 1.25rem;
+  background:var(--bg); border:1px solid var(--border-2);
+  border-radius:var(--r); text-decoration:none;
+  transition:background 0.2s, border-color 0.2s; margin-bottom:0.6rem;
+}
+.contact-method:hover { background:var(--primary-lt); border-color:var(--primary); }
+.contact-method-icon { font-size:1.1rem; flex-shrink:0; width:26px; text-align:center; color:var(--primary); }
+.contact-method-label { font-size:0.65rem; color:var(--text-2); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:2px; }
+.contact-method-val { font-size:0.9rem; color:var(--text); font-weight:500; }
+
+.ceo-contacts {
+  display:flex; gap:2rem; flex-wrap:wrap; margin:1.25rem 0 1.75rem;
+}
+.ceo-contacts a {
+  display:flex; align-items:center; gap:0.5rem;
+  font-size:0.92rem; color:var(--text); font-weight:500;
+  text-decoration:none; transition:color 0.2s;
+}
+.ceo-contacts a:hover { color:var(--primary); }
+.ceo-contacts a i { color:var(--primary); font-size:1.05rem; }
+
+.ceo-actions { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+
+.response-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--primary-lt); border:1px solid var(--border);
+  border-radius:20px; padding:6px 16px;
+  font-size:0.7rem; color:var(--primary); letter-spacing:0.07em; white-space:nowrap;
+}
+.response-badge::before { content:'●'; font-size:0.45rem; animation:blink 2s infinite; color:var(--cyan); }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.office-card h3 { font-size:1.2rem; margin-bottom:0.5rem; }
+.office-card .contact-card-role { margin-bottom:1rem; }
+
+.partner-section { padding:5rem 0; background:var(--bg); border-top:1px solid var(--border-2); }
+.partner-inner { max-width:680px; }
+.partner-inner p { font-size:1rem; color:var(--text-2); line-height:1.8; margin-bottom:2rem; }
+.partner-section .gold-bar { background:var(--grad); }
+
+@media(max-width:768px){
+  .contact-grid { grid-template-columns:1fr; }
+  .contact-card.featured { grid-column:auto; grid-template-columns:1fr; }
+  .contact-hero { padding:7rem 0 4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav nav-on-dark" id="mainNav">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">HDH <em>AG</em></span>
+      <span class="nav-logo-sub">Hirsch Dynamics AG</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <a href="index.html#divisions" data-i18n="nav_divs">Divisions</a>
+      <a href="podcast.html">Podcast</a>
+      <a href="visibal-plattform.html" class="nav-gold">VISIBAL ✦</a>
+      <a href="contact.html" class="active" data-i18n="nav_contact">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta" data-i18n="nav_cta">Book a Call</a>
+    <div class="lang-switcher">
+      <button class="lang-btn" id="langBtn" aria-label="Select language">
+        <i class="ph ph-globe"></i>
+        <span id="langCurrent">EN</span>
+        <i class="ph ph-caret-down lang-caret"></i>
+      </button>
+      <div class="lang-menu" id="langMenu">
+        <button data-lang="de" data-label="DE">DE</button>
+        <button data-lang="en" data-label="EN" class="active">EN</button>
+        <button data-lang="es" data-label="ES">ES</button>
+        <button data-lang="fr" data-label="FR">FR</button>
+      </div>
+    </div>  </div>
+</nav>
+
+<!-- HERO -->
+<div class="contact-hero">
+  <div class="wrap">
+    <div class="label reveal" data-i18n="contact_label">Direct Access</div>
+    <h1 class="reveal d1" data-i18n-html="contact_title">Talk Directly<br>to the CEO</h1>
+    <p class="reveal d2" data-i18n="contact_desc">No sales team. No contact forms. No waiting weeks for a reply. Linz Crawford handles every inquiry personally — because the right partnerships start with the right conversation.</p>
+  </div>
+</div>
+
+<!-- CONTACT CARDS -->
+<section class="section">
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <!-- CEO Card (featured, full width) -->
+      <div class="contact-card featured reveal">
+        <div class="ceo-avatar">LC</div>
+        <div>
+          <h3>Linz Crawford</h3>
+          <div class="contact-card-role">Chief Executive Officer · HDH AG · Hirsch Dynamics AG</div>
+          <p>15+ years in dental manufacturing and global OEM partnership development. Linz leads all expansion discussions across HDH's four divisions and personally oversees every new partnership from first conversation to signed agreement.</p>
+
+          <div class="ceo-contacts">
+            <a href="https://wa.me/447592198725"><i class="ph ph-whatsapp-logo"></i> +44 7592 198725</a>
+            <a href="mailto:lc@hirschdynamics.com"><i class="ph ph-envelope-simple"></i> lc@hirschdynamics.com</a>
+          </div>
+          <div class="ceo-actions">
+            <a href="https://wa.me/447592198725" class="btn btn-primary" data-i18n="home_ceo_cta">Message Linz on WhatsApp →</a>
+            <a href="mailto:lc@hirschdynamics.com" class="btn btn-outline-gold btn-sm" data-i18n="home_ceo_email">Send Email</a>
+            <div class="response-badge" data-i18n="home_ceo_badge">Response within 24 hours</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- General Office -->
+      <div class="contact-card office-card reveal d1">
+        <h3>General Inquiries</h3>
+        <div class="contact-card-role">HDH AG · Office</div>
+        <p>For general partnership inquiries, vendor matters, or if you'd like to submit a formal request to the HDH team.</p>
+        <a href="mailto:office@hirschdynamics.com" class="contact-method">
+          <div class="contact-method-icon"><i class="ph ph-buildings"></i></div>
+          <div class="contact-method-text">
+            <div class="contact-method-label">Office Email</div>
+            <div class="contact-method-val">office@hirschdynamics.com</div>
+          </div>
+        </a>
+        <div style="margin-top:1.5rem">
+          <a href="mailto:office@hirschdynamics.com" class="btn btn-outline-gold btn-sm">Send to Office →</a>
+        </div>
+      </div>
+
+      <!-- Locations -->
+      <div class="contact-card reveal d2">
+        <h3>Our Locations</h3>
+        <div class="contact-card-role">Four Continents · One Team</div>
+        <p>HDH AG operates globally with division headquarters across four strategic locations.</p>
+        <div style="display:flex;flex-direction:column;gap:0.85rem">
+          <div class="contact-method" style="text-decoration:none;cursor:default">
+            <div class="contact-method-icon"><i class="ph ph-map-pin"></i></div>
+            <div class="contact-method-text">
+              <div class="contact-method-label">CDB Division</div>
+              <div class="contact-method-val">North Carolina, USA</div>
+            </div>
+          </div>
+          <div class="contact-method" style="text-decoration:none;cursor:default">
+            <div class="contact-method-icon"><i class="ph ph-map-pin"></i></div>
+            <div class="contact-method-text">
+              <div class="contact-method-label">HIT Division</div>
+              <div class="contact-method-val">Zürich, Switzerland</div>
+            </div>
+          </div>
+          <div class="contact-method" style="text-decoration:none;cursor:default">
+            <div class="contact-method-icon"><i class="ph ph-map-pin"></i></div>
+            <div class="contact-method-text">
+              <div class="contact-method-label">Ceramedical Division</div>
+              <div class="contact-method-val">Seibersdorf, Austria</div>
+            </div>
+          </div>
+          <div class="contact-method" style="text-decoration:none;cursor:default">
+            <div class="contact-method-icon"><i class="ph ph-map-pin"></i></div>
+            <div class="contact-method-text">
+              <div class="contact-method-label">Masterpieces Division</div>
+              <div class="contact-method-val">Shenzhen, China</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER SECTION -->
+<div class="partner-section">
+  <div class="wrap">
+    <div class="partner-inner reveal">
+      <div class="label">Partnership Inquiries</div>
+      <h2 class="s-title">Become a Partner</h2>
+      <div class="gold-bar"></div>
+      <p>HDH AG is actively expanding its global OEM and distribution network across all four divisions. Whether you're an orthodontic distributor, dental clinic group, device manufacturer, or technology integrator — we're open to building long-term, exclusive partnerships.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="mailto:office@hirschdynamics.com?subject=Partnership Inquiry — HDH AG" class="btn btn-primary">Send Partnership Inquiry →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPANY INFO STRIP -->
+<div style="background:var(--bg);border-top:1px solid var(--border-2);padding:3rem 0">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:900px">
+      <div>
+        <div style="font-size:0.68rem;color:var(--primary);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.75rem">Registered Office</div>
+        <p style="font-size:0.9rem;color:var(--text);line-height:1.8;font-weight:500">HDH AG – Hirsch Dynamics AG<br>Seestrasse 58<br>8806 Bäch SZ<br>Switzerland</p>
+      </div>
+      <div>
+        <div style="font-size:0.68rem;color:var(--primary);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.75rem">Company Registration</div>
+        <p style="font-size:0.9rem;color:var(--text);line-height:1.8">Company number: <strong>CHE-113.546.355</strong><br>Register: Handelsregister Schwyz<br>Legal form: Aktiengesellschaft (AG)</p>
+        <a href="impressum.html" style="display:inline-block;margin-top:0.75rem;font-size:0.85rem;color:var(--primary);text-decoration:none;font-weight:500">Legal Notice / Impressum →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="f-brand-name">HDH <em>AG</em></div>
+        <p class="f-brand-tag">Hirsch Dynamics AG<br>Swiss Precision &amp; Know-how<br>Global Innovation Partner</p>
+        <div class="f-certs">
+          <span class="f-cert">FDA 510(K)</span>
+          <span class="f-cert">CE MDR 2017/745</span>
+          <span class="f-cert">ISO 13485</span>
+        </div>
+        <div class="f-social">
+          <a href="https://www.linkedin.com/company/hirsch-advanced-technologies-gmbh/" target="_blank" rel="noopener" aria-label="LinkedIn" class="f-social-link"><i class="ph ph-linkedin-logo"></i></a>
+          <a href="https://www.youtube.com/channel/UCNhtc2e2zEk64QOtgOJaAHA" target="_blank" rel="noopener" aria-label="YouTube" class="f-social-link yt"><i class="ph ph-youtube-logo"></i></a>
+          <a href="https://web.facebook.com/hirschdynamics/" target="_blank" rel="noopener" aria-label="Facebook" class="f-social-link fb"><i class="ph ph-facebook-logo"></i></a>
+          <a href="https://www.instagram.com/hirschdynamics/" target="_blank" rel="noopener" aria-label="Instagram" class="f-social-link ig"><i class="ph ph-instagram-logo"></i></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_divs">Divisions</h4>
+        <a href="cdb.html">CDB – Dental Brackets</a>
+        <a href="hit.html">HIT – Health Intelligence</a>
+        <a href="ceramedical.html">Ceramedical</a>
+        <a href="masterpieces.html">Masterpieces</a>
+        <a href="visibal-plattform.html">VISIBAL ✦</a>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_loc">Locations</h4>
+        <p>North Carolina, USA</p>
+        <p>Zürich, Switzerland</p>
+        <p>Seibersdorf, Austria</p>
+        <p>Shenzhen, China</p>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_contact">Contact</h4>
+        <a href="mailto:lc@hirschdynamics.com">lc@hirschdynamics.com</a>
+        <a href="mailto:office@hirschdynamics.com">office@hirschdynamics.com</a>
+        <a href="tel:+447592198725">+44 7592 198725</a>
+        <a href="contact.html">Contact Page →</a>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <p>© 2026 HDH AG – Hirsch Dynamics AG · All rights reserved</p>
+      <a href="impressum.html">Legal Notice / Impressum</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="translations.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

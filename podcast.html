@@ -1,0 +1,549 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Podcast &amp; Media — HDH AG</title>
+<meta name="description" content="Inside OEM Manufacturing · VISIBAL Podcast · Straight talk on dental brand building, precision ceramics, AI orthodontics and practice communication. Hosted by Linz Crawford, CEO of HDH AG.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+/* ── PODCAST HERO IMAGE ───────────────────── */
+.page-hero .page-hero-grid {
+  grid-template-columns: 45fr 55fr;
+  gap: 0;
+  align-items: stretch;
+}
+.page-hero .page-hero-img-col,
+.page-hero .page-hero-img-wrap {
+  height: 100%;
+}
+.page-hero .page-hero-img {
+  width: 125%;
+  max-width: 1100px;
+  right: -6%;
+}
+.page-hero .page-hero-text-col {
+  justify-content: flex-start;
+  padding-top: 5rem;
+  position: relative; z-index: 2;
+}
+/* ── FEATURED EPISODE ─────────────────────── */
+.pod-featured {
+  background:var(--grad-hero); background-size:200% 200%;
+  animation:gradShift 14s ease infinite;
+  border-radius:var(--r2); padding:2.75rem;
+  display:grid; grid-template-columns:1fr auto;
+  gap:2rem; align-items:center;
+  position:relative; overflow:hidden; margin-bottom:1.25rem;
+}
+.pod-featured::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(circle 380px at 80% 50%, rgba(6,198,232,0.22) 0%, transparent 70%);
+}
+.pod-feat-eyebrow {
+  font-size:0.68rem; font-weight:700; letter-spacing:0.14em;
+  text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:0.65rem;
+}
+.pod-feat-title {
+  font-family:var(--ff-d); font-size:clamp(1.3rem,2.5vw,1.9rem);
+  font-weight:800; color:#fff; line-height:1.2; margin-bottom:0.8rem;
+}
+.pod-feat-desc {
+  font-size:0.9rem; color:rgba(255,255,255,0.74); line-height:1.75;
+  margin-bottom:1.35rem; max-width:540px;
+}
+.pod-feat-pills { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+.pod-feat-pill {
+  background:rgba(255,255,255,0.13); border:1px solid rgba(255,255,255,0.22);
+  border-radius:20px; padding:4px 13px;
+  font-size:0.68rem; font-weight:600; color:rgba(255,255,255,0.85); font-family:var(--ff-d);
+}
+.pod-feat-actions { display:flex; gap:0.75rem; flex-wrap:wrap; }
+.pod-feat-btn {
+  display:inline-flex; align-items:center; gap:8px;
+  background:#fff; color:var(--primary);
+  border-radius:50px; padding:0.65rem 1.5rem;
+  font-size:0.85rem; font-weight:800; font-family:var(--ff-d);
+  text-decoration:none; transition:background 0.2s, color 0.2s; flex-shrink:0;
+}
+.pod-feat-btn:hover { background:var(--cyan); color:#fff; }
+.pod-feat-btn-ghost {
+  background:rgba(255,255,255,0.12); color:#fff;
+  border:1px solid rgba(255,255,255,0.28);
+}
+.pod-feat-btn-ghost:hover { background:rgba(255,255,255,0.22); color:#fff; }
+.pod-feat-ep-badge {
+  width:110px; height:110px; background:rgba(255,255,255,0.12);
+  border:2px solid rgba(255,255,255,0.25); border-radius:var(--r2);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:#fff; font-family:var(--ff-d); flex-shrink:0; position:relative; z-index:1;
+}
+.pod-feat-ep-badge span { font-size:0.6rem; letter-spacing:0.15em; opacity:0.6; }
+.pod-feat-ep-badge strong { font-size:2.2rem; font-weight:800; line-height:1.1; }
+
+/* ── EPISODE LIST CARDS ───────────────────── */
+.pod-list { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; margin-top:0; }
+.pod-card {
+  display:flex; flex-direction:column;
+  background:var(--white); border:1px solid var(--border-2);
+  border-radius:var(--r2); overflow:hidden;
+  box-shadow:var(--shadow-sm); text-decoration:none; color:inherit;
+  transition:border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.pod-card:hover { border-color:var(--primary); box-shadow:var(--shadow-md); transform:translateY(-5px); }
+.pod-ep-badge {
+  background:var(--grad); width:100%; padding:1.4rem 1.5rem;
+  display:flex; align-items:center; justify-content:space-between;
+  color:#fff; font-family:var(--ff-d); border-radius:0; height:auto; flex-shrink:0;
+}
+.ep-info { display:flex; flex-direction:column; }
+.pod-ep-badge .ep-label { font-size:0.58rem; letter-spacing:0.16em; opacity:0.65; margin-bottom:3px; font-weight:700; text-transform:uppercase; }
+.pod-ep-badge .ep-num  { font-size:2.1rem; line-height:1; font-weight:800; }
+.pod-ep-wave { font-size:1.8rem; opacity:0.28; }
+.pod-body { padding:1.5rem; flex:1; min-width:0; display:flex; flex-direction:column; }
+.pod-title {
+  font-family:var(--ff-d); font-size:clamp(0.92rem,1.4vw,1.05rem);
+  font-weight:700; color:var(--navy); margin-bottom:0.5rem; line-height:1.35;
+}
+.pod-desc { font-size:0.82rem; color:var(--text-2); line-height:1.65; margin:0 0 0.85rem; flex:1; }
+.pod-tags { display:flex; gap:0.45rem; flex-wrap:wrap; }
+.pod-tag {
+  display:inline-flex; align-items:center; gap:4px;
+  background:var(--primary-lt); color:var(--primary);
+  border-radius:20px; padding:3px 10px;
+  font-size:0.64rem; font-weight:700; font-family:var(--ff-d);
+}
+.pod-tag-dur { background:var(--bg); color:var(--text-2); border:1px solid var(--border-2); }
+.pod-listen-btn {
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  background:var(--primary-lt); color:var(--primary);
+  padding:0.9rem 1.2rem; font-size:0.82rem; font-weight:700;
+  font-family:var(--ff-d); border-top:1px solid var(--border-2);
+  flex-shrink:0; transition:background 0.2s, color 0.2s;
+}
+.pod-card:hover .pod-listen-btn { background:var(--grad); color:#fff; border-color:transparent; }
+
+/* ── AUDIO PLAYER CARDS ───────────────────── */
+.audio-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:1.5rem; margin-top:2.75rem;
+}
+.audio-card {
+  background:var(--white); border:1px solid var(--border-2);
+  border-radius:var(--r2); padding:2rem;
+  box-shadow:var(--shadow-sm); display:flex; flex-direction:column; gap:1.2rem;
+}
+.audio-head { display:flex; align-items:center; gap:1rem; }
+.audio-icon {
+  width:50px; height:50px; border-radius:var(--r); flex-shrink:0;
+  background:var(--grad); display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:1.3rem;
+}
+.audio-title  { font-family:var(--ff-d); font-size:1rem; font-weight:800; color:var(--navy); margin-bottom:2px; }
+.audio-sub    { font-size:0.74rem; color:var(--text-2); }
+.audio-desc   { font-size:0.83rem; color:var(--text-2); line-height:1.7; }
+.audio-badges { display:flex; gap:0.45rem; flex-wrap:wrap; }
+audio { width:100%; border-radius:8px; accent-color:var(--primary); }
+
+/* ── YOUTUBE BANNER ───────────────────────── */
+.yt-banner {
+  background:linear-gradient(135deg,#0f0f0f 0%,#1c1c1e 100%);
+  border-radius:var(--r2); padding:3rem 2.75rem;
+  display:grid; grid-template-columns:1fr auto;
+  gap:2rem; align-items:center;
+}
+.yt-icon {
+  width:54px; height:54px; background:#FF0000; border-radius:14px;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:1.5rem; margin-bottom:1.25rem;
+}
+.yt-title { font-family:var(--ff-d); font-size:clamp(1.3rem,2.5vw,1.85rem); font-weight:800; color:#fff; margin-bottom:0.55rem; }
+.yt-sub   { font-size:0.88rem; color:rgba(255,255,255,0.58); line-height:1.7; max-width:460px; }
+.yt-chips { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:1.1rem; }
+.yt-chip {
+  background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.13);
+  border-radius:20px; padding:4px 12px;
+  font-size:0.68rem; font-weight:600; color:rgba(255,255,255,0.55); font-family:var(--ff-d);
+}
+.yt-btn {
+  display:inline-flex; align-items:center; gap:9px;
+  background:#FF0000; color:#fff; border-radius:50px;
+  padding:0.75rem 1.75rem; font-size:0.88rem; font-weight:700; font-family:var(--ff-d);
+  text-decoration:none; transition:background 0.2s, transform 0.2s;
+  flex-shrink:0; align-self:center;
+}
+.yt-btn:hover { background:#cc0000; transform:scale(1.03); }
+
+/* ── DOWNLOAD CARD ────────────────────────── */
+.dl-card {
+  display:flex; align-items:center; gap:1.75rem;
+  background:var(--white); border:1px solid var(--border-2);
+  border-radius:var(--r2); padding:1.75rem 2rem;
+  box-shadow:var(--shadow-sm); transition:border-color 0.2s, box-shadow 0.2s;
+}
+.dl-card:hover { border-color:var(--primary); box-shadow:var(--shadow-md); }
+.dl-icon {
+  width:54px; height:54px; border-radius:12px; flex-shrink:0;
+  background:rgba(220,38,38,0.08); border:1px solid rgba(220,38,38,0.18);
+  display:flex; align-items:center; justify-content:center; color:#dc2626; font-size:1.45rem;
+}
+.dl-info { flex:1; min-width:0; }
+.dl-title { font-family:var(--ff-d); font-size:1rem; font-weight:700; color:var(--navy); margin-bottom:3px; }
+.dl-meta  { font-size:0.77rem; color:var(--text-2); }
+.dl-btn {
+  display:inline-flex; align-items:center; gap:7px;
+  border:1.5px solid var(--primary); color:var(--primary);
+  border-radius:50px; padding:0.5rem 1.25rem;
+  font-size:0.8rem; font-weight:700; font-family:var(--ff-d);
+  text-decoration:none; flex-shrink:0;
+  transition:background 0.2s, color 0.2s;
+}
+.dl-btn:hover { background:var(--primary); color:#fff; }
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media(max-width:900px) {
+  .pod-featured { grid-template-columns:1fr; }
+  .pod-feat-ep-badge { display:none; }
+  .audio-grid { grid-template-columns:1fr; }
+  .yt-banner { grid-template-columns:1fr; }
+}
+@media(max-width:700px) {
+  .pod-list { grid-template-columns:1fr; }
+}
+@media(max-width:640px) {
+  .dl-card { flex-wrap:wrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav nav-on-dark" id="mainNav">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">HDH <em>AG</em></span>
+      <span class="nav-logo-sub">Hirsch Dynamics AG</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-menu" id="navMenu">
+      <a href="index.html#divisions" data-i18n="nav_divs">Divisions</a>
+      <a href="podcast.html" class="active" data-i18n="nav_podcast">Podcast</a>
+      <a href="visibal-plattform.html" class="nav-gold">VISIBAL ✦</a>
+      <a href="contact.html" data-i18n="nav_contact">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta" data-i18n="nav_cta">Book a Call</a>
+    <div class="lang-switcher">
+      <button class="lang-btn" id="langBtn" aria-label="Select language">
+        <i class="ph ph-globe"></i>
+        <span id="langCurrent">EN</span>
+        <i class="ph ph-caret-down lang-caret"></i>
+      </button>
+      <div class="lang-menu" id="langMenu">
+        <button data-lang="de" data-label="DE">DE</button>
+        <button data-lang="en" data-label="EN" class="active">EN</button>
+        <button data-lang="es" data-label="ES">ES</button>
+        <button data-lang="fr" data-label="FR">FR</button>
+      </div>
+    </div>  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="page-hero-grid">
+      <div class="page-hero-text-col">
+        <div class="label reveal"><i class="ph ph-microphone-stage"></i> <span data-i18n="pod_hero_label">HDH AG · Media Hub</span></div>
+        <h1 class="reveal d1" data-i18n="pod_hero_title">Podcast &amp; Video</h1>
+        <p class="reveal d2" data-i18n="pod_hero_desc">Straight talk on building dental brands, precision manufacturing, AI-driven orthodontics, and practice communication — hosted by Linz Crawford, CEO of HDH AG.</p>
+        <div class="reveal d3" style="display:flex;gap:0.65rem;flex-wrap:wrap">
+          <span style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.24);border-radius:50px;padding:5px 14px;font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.85);font-family:var(--ff-d)"><i class="ph ph-broadcast"></i> <span data-i18n="pod_hero_badge1">2 Podcast Series</span></span>
+          <span style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.24);border-radius:50px;padding:5px 14px;font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.85);font-family:var(--ff-d)"><i class="ph ph-video-camera"></i> <span data-i18n="pod_hero_badge2">YouTube Channel</span></span>
+          <span style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.24);border-radius:50px;padding:5px 14px;font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.85);font-family:var(--ff-d)"><i class="ph ph-file-pdf"></i> <span data-i18n="pod_hero_badge3">Scripts Available</span></span>
+        </div>
+      </div>
+      <div class="page-hero-img-col reveal d2">
+        <div class="page-hero-img-wrap">
+          <img src="images/Podcast%20page/hero%20section.png" alt="Podcast & Video — HDH AG Media Hub" class="page-hero-img">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── INSIDE OEM MANUFACTURING ───────────────────────────────────────────── -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="label"><i class="ph ph-microphone"></i> <span data-i18n="pod_oem_label">Inside OEM Manufacturing</span></div>
+      <h2 class="s-title" data-i18n="pod_oem_title">Straight Talk on<br>Building Dental Brands</h2>
+      <p class="s-sub" data-i18n="pod_oem_sub">Candid, no-filter conversations about what it actually takes to build a dental brand — from regulatory hurdles to 90-day OEM launches. Hosted by Linz Crawford, CEO of HDH AG.</p>
+    </div>
+
+    <!-- Featured: EP 09 -->
+    <div class="pod-featured reveal" style="margin-top:2.75rem">
+      <div style="position:relative;z-index:1">
+        <div class="pod-feat-eyebrow" data-i18n="pod_feat_eyebrow">Latest Episode · Inside OEM Manufacturing</div>
+        <div class="pod-feat-title" data-i18n="pod_feat_title">"Your Brand. Our Precision."<br>The Complete OEM Orthodontic Partner</div>
+        <p class="pod-feat-desc" data-i18n="pod_feat_desc">Act I — The Problem. Act II — The Four Divisions. Act III — The 360° Argument. Act IV — Who Should Call. Everything you need to know about partnering with HDH AG, in under 10 minutes.</p>
+        <div class="pod-feat-pills">
+          <span class="pod-feat-pill">EP 09</span>
+          <span class="pod-feat-pill"><i class="ph ph-clock"></i> ~10 min</span>
+          <span class="pod-feat-pill">English · 2 Hosts</span>
+          <span class="pod-feat-pill">THE DENTAL FRONTIER</span>
+        </div>
+        <div class="pod-feat-actions">
+          <a href="https://www.youtube.com/channel/UCNhtc2e2zEk64QOtgOJaAHA" target="_blank" rel="noopener" class="pod-feat-btn">
+            <i class="ph ph-play-circle"></i> <span data-i18n="pod_feat_listen">Listen Now</span>
+          </a>
+          <a href="downloads/HDH_Podcast_Script.pdf" download class="pod-feat-btn pod-feat-btn-ghost">
+            <i class="ph ph-file-pdf"></i> <span data-i18n="pod_feat_script">Script PDF</span>
+          </a>
+        </div>
+      </div>
+      <div class="pod-feat-ep-badge">
+        <span data-i18n="pod_ep_label">EPISODE</span>
+        <strong>09</strong>
+        <span style="font-size:0.55rem;margin-top:4px;opacity:0.5" data-i18n="pod_ep_latest">LATEST</span>
+      </div>
+    </div>
+
+    <!-- EP 08–05 -->
+    <div class="pod-list">
+      <a href="https://www.youtube.com/channel/UCNhtc2e2zEk64QOtgOJaAHA" target="_blank" rel="noopener" class="pod-card reveal">
+        <div class="pod-ep-badge">
+          <div class="ep-info"><span class="ep-label" data-i18n="pod_ep_label">Episode</span><span class="ep-num">08</span></div>
+          <i class="ph ph-microphone pod-ep-wave"></i>
+        </div>
+        <div class="pod-body">
+          <div class="pod-title" data-i18n="pod_ep08_title">The Rise of Private Label in Orthodontics</div>
+          <p class="pod-desc" data-i18n="pod_ep08_desc">Why clinic groups and DSOs are moving away from branded bracket systems — and what OEM partners need to offer to win the next decade of dental distribution.</p>
+          <div class="pod-tags">
+            <span class="pod-tag" data-i18n="pod_ep08_tag">OEM Strategy</span>
+            <span class="pod-tag pod-tag-dur"><i class="ph ph-clock"></i> 19–22 min</span>
+          </div>
+        </div>
+        <span class="pod-listen-btn"><i class="ph ph-play-circle"></i> <span data-i18n="pod_listen_btn">Listen to Episode</span></span>
+      </a>
+
+      <a href="https://www.youtube.com/channel/UCNhtc2e2zEk64QOtgOJaAHA" target="_blank" rel="noopener" class="pod-card reveal d1">
+        <div class="pod-ep-badge">
+          <div class="ep-info"><span class="ep-label" data-i18n="pod_ep_label">Episode</span><span class="ep-num">07</span></div>
+          <i class="ph ph-microphone pod-ep-wave"></i>
+        </div>
+        <div class="pod-body">
+          <div class="pod-title" data-i18n="pod_ep07_title">Ceramic vs. Metal: What Orthodontists Actually Want in 2026</div>
+          <p class="pod-desc" data-i18n="pod_ep07_desc">Market data from 50+ countries — which bracket material is winning globally and why ceramic is outpacing metal in every premium market.</p>
+          <div class="pod-tags">
+            <span class="pod-tag" data-i18n="pod_ep07_tag">Market Data</span>
+            <span class="pod-tag pod-tag-dur"><i class="ph ph-clock"></i> 38 min</span>
+          </div>
+        </div>
+        <span class="pod-listen-btn"><i class="ph ph-play-circle"></i> <span data-i18n="pod_listen_btn">Listen to Episode</span></span>
+      </a>
+
+      <a href="https://www.youtube.com/channel/UCNhtc2e2zEk64QOtgOJaAHA" target="_blank" rel="noopener" class="pod-card reveal">
+        <div class="pod-ep-badge">
+          <div class="ep-info"><span class="ep-label" data-i18n="pod_ep_label">Episode</span><span class="ep-num">06</span></div>
+          <i class="ph ph-microphone pod-ep-wave"></i>
+        </div>
+        <div class="pod-body">
+          <div class="pod-title" data-i18n="pod_ep06_title">Regulatory Roadmap: Getting Your Bracket Brand into 30+ Markets</div>
+          <p class="pod-desc" data-i18n="pod_ep06_desc">FDA 510(K), CE MDR 2017/745, ISO 13485 — the exact regulatory path CDB takes OEM partners through, including timelines, costs, and common failure points.</p>
+          <div class="pod-tags">
+            <span class="pod-tag" data-i18n="pod_ep06_tag">Regulatory</span>
+            <span class="pod-tag pod-tag-dur"><i class="ph ph-clock"></i> 51 min</span>
+          </div>
+        </div>
+        <span class="pod-listen-btn"><i class="ph ph-play-circle"></i> <span data-i18n="pod_listen_btn">Listen to Episode</span></span>
+      </a>
+
+      <a href="https://www.youtube.com/channel/UCNhtc2e2zEk64QOtgOJaAHA" target="_blank" rel="noopener" class="pod-card reveal d1">
+        <div class="pod-ep-badge">
+          <div class="ep-info"><span class="ep-label" data-i18n="pod_ep_label">Episode</span><span class="ep-num">05</span></div>
+          <i class="ph ph-microphone pod-ep-wave"></i>
+        </div>
+        <div class="pod-body">
+          <div class="pod-title" data-i18n="pod_ep05_title">From Lab to Launch: The 90-Day OEM Sprint</div>
+          <p class="pod-desc" data-i18n="pod_ep05_desc">How fast can a new dental brand actually go from idea to shelf? The real timeline, real obstacles, and the shortcuts that experienced OEM partners already know.</p>
+          <div class="pod-tags">
+            <span class="pod-tag" data-i18n="pod_ep05_tag">Manufacturing</span>
+            <span class="pod-tag pod-tag-dur"><i class="ph ph-clock"></i> 44 min</span>
+          </div>
+        </div>
+        <span class="pod-listen-btn"><i class="ph ph-play-circle"></i> <span data-i18n="pod_listen_btn">Listen to Episode</span></span>
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:2rem" class="reveal">
+      <a href="https://www.youtube.com/channel/UCNhtc2e2zEk64QOtgOJaAHA" target="_blank" rel="noopener" class="btn btn-outline">
+        <i class="ph ph-youtube-logo"></i> <span data-i18n="pod_all_episodes">All Episodes on YouTube ↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── VISIBAL PODCAST ─────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="label"><i class="ph ph-sparkle" style="color:var(--cyan)"></i> <span data-i18n="pod_vs_label">VISIBAL Podcast</span></div>
+      <h2 class="s-title" data-i18n="pod_vs_title">The Practice That<br><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Communicates, Wins.</span></h2>
+      <p class="s-sub" data-i18n="pod_vs_sub">Understand how VISIBAL automates dental practice communication — recall, chatbot, newsletter, and patient retention. Available in a compact short version and the complete full-length edition.</p>
+    </div>
+
+    <div class="audio-grid">
+      <!-- Short version -->
+      <div class="audio-card reveal d1">
+        <div class="audio-head">
+          <div class="audio-icon"><i class="ph ph-lightning"></i></div>
+          <div>
+            <div class="audio-title" data-i18n="pod_short_title">Short Version</div>
+            <div class="audio-sub" data-i18n="pod_short_sub">Essentials under 7 minutes</div>
+          </div>
+        </div>
+        <p class="audio-desc" data-i18n="pod_short_desc">All the key arguments, compact and direct. What VISIBAL does, how automation drives practice revenue, and why retaining a patient costs 26× less than acquiring a new one. Ideal for a first impression.</p>
+        <div class="audio-badges">
+          <span class="pod-tag pod-tag-dur"><i class="ph ph-clock"></i> 6 min 28 sec</span>
+          <span class="pod-tag">EN / DE</span>
+        </div>
+        <audio controls preload="none">
+          <source src="visual%20for%20VISIBAL/VISIBAL_Podcast_Kurzfassung.m4a" type="audio/mp4">
+          <span data-i18n="pod_audio_fallback">Your browser does not support the audio element.</span>
+        </audio>
+      </div>
+
+      <!-- Full version -->
+      <div class="audio-card reveal d2">
+        <div class="audio-head">
+          <div class="audio-icon" style="background:linear-gradient(135deg,var(--blue),var(--cyan))"><i class="ph ph-microphone-stage"></i></div>
+          <div>
+            <div class="audio-title" data-i18n="pod_full_title">Full Version</div>
+            <div class="audio-sub" data-i18n="pod_full_sub">All data, case studies &amp; implementation</div>
+          </div>
+        </div>
+        <p class="audio-desc" data-i18n="pod_full_desc">The complete VISIBAL deep-dive — every number, argument, and evidence in plain language. Real case studies, full ROI data, and the complete implementation framework for dental and orthodontic practices.</p>
+        <div class="audio-badges">
+          <span class="pod-tag pod-tag-dur"><i class="ph ph-clock"></i> 27 min 13 sec</span>
+          <span class="pod-tag">EN / DE</span>
+        </div>
+        <audio controls preload="none">
+          <source src="visual%20for%20VISIBAL/VISIBAL_Podcast_Langfassung.m4a" type="audio/mp4">
+          <span data-i18n="pod_audio_fallback">Your browser does not support the audio element.</span>
+        </audio>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:1.75rem" class="reveal">
+      <a href="visibal-plattform.html" class="btn btn-primary"><span data-i18n="pod_vs_cta">Explore VISIBAL Platform</span> <i class="ph ph-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── YOUTUBE CHANNEL ────────────────────────────────────────────────────── -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="yt-banner reveal">
+      <div>
+        <div class="yt-icon"><i class="ph ph-youtube-logo"></i></div>
+        <div class="yt-title" data-i18n="pod_yt_title">HDH AG on YouTube</div>
+        <p class="yt-sub" data-i18n="pod_yt_sub">Full-length podcast episodes, manufacturing process tours, product demos, and expert interviews. Subscribe to stay at the forefront of dental and orthodontic manufacturing.</p>
+        <div class="yt-chips">
+          <span class="yt-chip" data-i18n="pod_yt_chip1">Full Episodes</span>
+          <span class="yt-chip" data-i18n="pod_yt_chip2">Process Tours</span>
+          <span class="yt-chip" data-i18n="pod_yt_chip3">Product Demos</span>
+          <span class="yt-chip" data-i18n="pod_yt_chip4">Expert Interviews</span>
+        </div>
+      </div>
+      <a href="https://www.youtube.com/channel/UCNhtc2e2zEk64QOtgOJaAHA" target="_blank" rel="noopener" class="yt-btn">
+        <i class="ph ph-youtube-logo"></i> <span data-i18n="pod_yt_btn">Visit Channel ↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SCRIPT DOWNLOAD ────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:1.75rem">
+      <div class="label" data-i18n="pod_dl_label">Downloads</div>
+      <h2 class="s-title" data-i18n="pod_dl_title">Scripts &amp; Resources</h2>
+      <p class="s-sub" data-i18n="pod_dl_sub">Full production scripts available for accessibility, research, or review.</p>
+    </div>
+    <div class="dl-card reveal d1">
+      <div class="dl-icon"><i class="ph ph-file-pdf"></i></div>
+      <div class="dl-info">
+        <div class="dl-title" data-i18n="pod_dl_script_title">THE DENTAL FRONTIER · EP. 09 — Production Script</div>
+        <div class="dl-meta" data-i18n="pod_dl_script_meta">"Your Brand. Our Precision." · HDH AG Complete OEM Partner · ~10 min · English · 2-Host Format (ALEX + SARAH)</div>
+      </div>
+      <a href="downloads/HDH_Podcast_Script.pdf" download class="dl-btn"><i class="ph ph-download-simple"></i> <span data-i18n="pod_dl_btn">Download PDF</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA BANNER ─────────────────────────────────────────────────────────── -->
+<div class="cta-banner">
+  <div class="wrap">
+    <div class="label" style="justify-content:center;margin:0 auto 1.25rem;color:rgba(255,255,255,0.6)" data-i18n="pod_cta_label">Ready to Talk?</div>
+    <h2 class="reveal" data-i18n="pod_cta_title">Heard enough?<br>Let's build your dental brand.</h2>
+    <p class="reveal d1" data-i18n="pod_cta_sub">No sales team. No forms. No waiting. CEO Linz Crawford answers every inquiry personally within 24 hours.</p>
+    <div class="reveal d2" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary"><span data-i18n="pod_cta_email">Email Linz Directly</span> <i class="ph ph-arrow-right"></i></a>
+      <a href="https://wa.me/447592198725" class="btn btn-outline" style="border-color:rgba(255,255,255,0.25);color:#fff" data-i18n="pod_cta_wa">WhatsApp +44 7592 198725</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="f-brand-name">HDH <em>AG</em></div>
+        <p class="f-brand-tag" data-i18n="footer_brand_tag">Hirsch Dynamics AG<br>Swiss Precision &amp; Know-how<br>Global Innovation Partner for Medical &amp; Dental Technology</p>
+        <div class="f-certs">
+          <span class="f-cert">FDA 510(K)</span>
+          <span class="f-cert">CE MDR 2017/745</span>
+          <span class="f-cert">ISO 13485</span>
+        </div>
+        <div class="f-social">
+          <a href="https://www.linkedin.com/company/hirsch-advanced-technologies-gmbh/" target="_blank" rel="noopener" aria-label="LinkedIn" class="f-social-link"><i class="ph ph-linkedin-logo"></i></a>
+          <a href="https://www.youtube.com/channel/UCNhtc2e2zEk64QOtgOJaAHA" target="_blank" rel="noopener" aria-label="YouTube" class="f-social-link yt"><i class="ph ph-youtube-logo"></i></a>
+          <a href="https://web.facebook.com/hirschdynamics/" target="_blank" rel="noopener" aria-label="Facebook" class="f-social-link fb"><i class="ph ph-facebook-logo"></i></a>
+          <a href="https://www.instagram.com/hirschdynamics/" target="_blank" rel="noopener" aria-label="Instagram" class="f-social-link ig"><i class="ph ph-instagram-logo"></i></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_divs">Divisions</h4>
+        <a href="cdb.html">CDB – Dental Brackets</a>
+        <a href="hit.html">HIT – Health Intelligence</a>
+        <a href="ceramedical.html">Ceramedical</a>
+        <a href="masterpieces.html">Masterpieces</a>
+        <a href="visibal-plattform.html">VISIBAL ✦</a>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_media">Media</h4>
+        <a href="podcast.html" data-i18n="footer_media_podcast">Podcast &amp; Video</a>
+        <a href="https://www.youtube.com/channel/UCNhtc2e2zEk64QOtgOJaAHA" target="_blank" rel="noopener" data-i18n="footer_yt_link">YouTube Channel ↗</a>
+        <a href="downloads/HDH_Podcast_Script.pdf" download data-i18n="footer_script_dl">Episode Script PDF</a>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_contact">Contact</h4>
+        <a href="mailto:lc@hirschdynamics.com">lc@hirschdynamics.com</a>
+        <a href="mailto:office@hirschdynamics.com">office@hirschdynamics.com</a>
+        <a href="tel:+447592198725">+44 7592 198725</a>
+        <a href="contact.html" data-i18n="footer_contact_page">Contact Page →</a>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <p data-i18n="footer_copy">© 2026 HDH AG – Hirsch Dynamics AG · All rights reserved</p>
+      <a href="impressum.html" data-i18n="footer_legal">Legal Notice / Impressum</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="translations.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

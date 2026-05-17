@@ -1,0 +1,794 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VISIBAL — Patient CRM Platform | HDH AG</title>
+<meta name="description" content="The practice that communicates, wins. VISIBAL automates all patient communication for dental and orthodontic practices — recall, chatbot, podcast, newsletter. Powered by HIT · Hirsch Dynamics AG.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+/* ── VISIBAL HERO ────────────────────────────────── */
+.vs-hero {
+  min-height:100vh; display:flex; align-items:center;
+  padding:9rem 0 5.5rem;
+  background:var(--grad-hero);
+  background-size:250% 250%;
+  animation:gradShift 14s ease infinite;
+  border-bottom:3px solid var(--gold);
+  position:relative; overflow:hidden;
+}
+.vs-hero::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse 50% 80% at 80% 50%, rgba(200,146,42,0.10) 0%, transparent 60%);
+}
+.vs-hero::after {
+  content:'VISIBAL';
+  position:absolute; right:-1rem; top:50%; transform:translateY(-50%);
+  font-family:var(--ff-d); font-weight:800;
+  font-size:clamp(7rem,18vw,14rem);
+  color:rgba(255,255,255,0.03);
+  pointer-events:none; white-space:nowrap; line-height:1;
+}
+.vs-hero .wrap { width:100%; }
+.vs-hero .label { color:var(--gold); }
+.vs-hero .label::before { background:var(--gold); }
+.vs-hero h1 { font-size:clamp(2.8rem,6vw,4.5rem); margin:1rem 0 0.4rem; color:#fff; line-height:1.05; }
+.vs-hero-italic { font-size:clamp(1.1rem,2.5vw,1.5rem); color:rgba(255,255,255,0.45); font-style:italic; margin-bottom:1.25rem; }
+.vs-hero-desc { font-size:1rem; color:rgba(255,255,255,0.6); max-width:580px; line-height:1.85; margin-bottom:2.5rem; }
+
+/* ── STATS STRIP ─────────────────────────────────── */
+.vs-stats { background:var(--white); border-top:1px solid var(--border-2); border-bottom:1px solid var(--border-2); padding:0; }
+.vs-stats-grid {
+  display:grid; grid-template-columns:repeat(6,1fr);
+}
+.vs-stat {
+  text-align:center; padding:2rem 1rem;
+  border-right:1px solid var(--border-2);
+}
+.vs-stat:last-child { border-right:none; }
+.vs-stat-n {
+  font-family:var(--ff-d); font-size:clamp(1.7rem,2.8vw,2.4rem);
+  font-weight:800; color:var(--gold); line-height:1; margin-bottom:0.5rem;
+}
+.vs-stat-l { font-size:0.71rem; color:var(--text-2); line-height:1.45; max-width:110px; margin:0 auto; }
+.vs-stat-s { font-size:0.59rem; color:var(--text-2); opacity:0.55; margin-top:4px; font-style:italic; }
+
+/* ── PROBLEM SECTION ─────────────────────────────── */
+.alert-box {
+  background:rgba(200,146,42,0.07); border:1px solid var(--gold-bd);
+  border-left:4px solid var(--gold); border-radius:var(--r2);
+  padding:1.75rem 2rem; margin:2rem 0;
+}
+.alert-box p { font-size:1rem; color:var(--text-2); line-height:1.8; }
+.alert-box strong { color:var(--navy); }
+
+/* ── COMPARISON TABLE ────────────────────────────── */
+.vs-table { width:100%; border-collapse:collapse; margin-top:1.5rem; border-radius:var(--r2); overflow:hidden; box-shadow:var(--shadow-sm); }
+.vs-table th { padding:1rem 1.5rem; text-align:left; font-family:var(--ff-d); font-size:0.76rem; letter-spacing:0.12em; text-transform:uppercase; }
+.vs-table th.hd-row { background:var(--navy); color:#fff; }
+.vs-table th.hd-bad  { background:rgba(180,60,40,0.12); color:#c0392b; }
+.vs-table th.hd-good { background:var(--blue); color:#fff; }
+.vs-table td { padding:0.9rem 1.5rem; border-bottom:1px solid var(--border-2); font-size:0.9rem; }
+.vs-table td.td-label { font-weight:600; color:var(--navy); background:var(--bg); }
+.vs-table td.td-bad  { color:#c0392b; }
+.vs-table td.td-good { color:var(--blue); font-weight:600; }
+.vs-table tr:last-child td { border-bottom:none; }
+
+/* ── SERVICE CARDS ───────────────────────────────── */
+.svc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:0.85rem; margin-top:2rem; }
+.svc-card {
+  background:var(--white); border:1px solid var(--border-2);
+  border-radius:var(--r2); padding:1.1rem 1.25rem;
+  display:grid; grid-template-columns:38px auto 1fr;
+  gap:0.85rem; align-items:start;
+  box-shadow:var(--shadow-sm); transition:all 0.22s var(--ease);
+}
+.svc-card:hover { border-color:var(--blue); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+.svc-icon {
+  width:38px; height:38px; border-radius:10px;
+  background:var(--blue-lt); display:flex; align-items:center; justify-content:center;
+  color:var(--blue); font-size:1.1rem; flex-shrink:0;
+  transition:all 0.2s;
+}
+.svc-card:hover .svc-icon { background:var(--blue); color:#fff; }
+.svc-freq {
+  flex-shrink:0; background:var(--blue-lt); border:1px solid var(--border);
+  border-radius:20px; padding:0.2rem 0.7rem;
+  font-size:0.62rem; color:var(--blue); font-weight:700;
+  letter-spacing:0.08em; text-transform:uppercase;
+  white-space:nowrap; height:fit-content; margin-top:1px;
+}
+.svc-body {}
+.svc-title { font-family:var(--ff-d); font-size:0.88rem; font-weight:700; color:var(--navy); margin-bottom:0.3rem; }
+.svc-desc { font-size:0.78rem; color:var(--text-2); line-height:1.6; }
+
+/* ── DIAGNOSTIC QUESTIONS ────────────────────────── */
+.q-list { display:flex; flex-direction:column; gap:1rem; margin-top:2.5rem; }
+.q-item {
+  background:var(--white); border:1px solid var(--border-2);
+  border-left:4px solid var(--blue); border-radius:var(--r);
+  padding:1.5rem 1.75rem; box-shadow:var(--shadow-sm);
+  transition:border-color 0.2s;
+}
+.q-item:hover { border-color:var(--blue); }
+.q-num { font-size:0.65rem; color:var(--blue); letter-spacing:0.15em; text-transform:uppercase; font-weight:700; margin-bottom:0.45rem; }
+.q-text { font-weight:600; color:var(--navy); margin-bottom:0.35rem; font-size:0.95rem; }
+.q-risk { font-size:0.82rem; color:#c0392b; font-style:italic; margin-bottom:0.3rem; }
+.q-sol  { font-size:0.82rem; color:var(--blue); font-weight:500; }
+
+/* ── KPI TABLE ───────────────────────────────────── */
+.kpi-table { width:100%; border-collapse:collapse; margin-top:1.5rem; border-radius:var(--r2); overflow:hidden; box-shadow:var(--shadow-sm); }
+.kpi-table th { padding:1rem 1.5rem; text-align:left; font-family:var(--ff-d); font-size:0.76rem; letter-spacing:0.1em; text-transform:uppercase; }
+.kpi-table th.kh-label  { background:var(--navy); color:#fff; }
+.kpi-table th.kh-before { background:var(--bg-2); color:var(--text-2); }
+.kpi-table th.kh-after  { background:var(--blue); color:#fff; }
+.kpi-table td { padding:0.9rem 1.5rem; border-bottom:1px solid var(--border-2); font-size:0.9rem; }
+.kpi-table td.kd-label  { font-weight:600; color:var(--navy); background:var(--bg); }
+.kpi-table td.kd-before { color:var(--text-2); background:#fafbff; }
+.kpi-table td.kd-after  { color:var(--blue); font-weight:700; background:#f0f5ff; }
+.kpi-table tr:last-child td { border-bottom:none; }
+
+/* ── CASE STUDY ──────────────────────────────────── */
+.case-card {
+  background:var(--white);
+  border:1px solid var(--gold-bd); border-radius:var(--r3);
+  border-top:3px solid var(--gold);
+  padding:3rem; position:relative; overflow:hidden;
+  box-shadow:var(--shadow-md);
+}
+.case-card::before {
+  content:'«'; position:absolute; top:-1rem; left:1.5rem;
+  font-family:var(--ff-d); font-size:9rem;
+  color:rgba(200,146,42,0.07); line-height:1; font-weight:900;
+}
+.case-tag {
+  display:inline-flex; align-items:center; gap:7px;
+  background:var(--gold-dim); border:1px solid var(--gold-bd);
+  border-radius:20px; padding:5px 14px;
+  font-size:0.68rem; color:var(--gold);
+  letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1.5rem;
+}
+.case-body { font-size:1rem; color:var(--text-2); line-height:1.85; max-width:620px; margin-bottom:2rem; }
+.case-stats {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem;
+}
+.case-stat {
+  text-align:center; padding:1.5rem 1rem;
+  background:var(--gold-dim);
+  border:1px solid var(--gold-bd); border-radius:var(--r2);
+}
+.case-stat-n { font-family:var(--ff-d); font-size:2rem; font-weight:800; color:var(--gold); line-height:1; }
+.case-stat-l { font-size:0.73rem; color:var(--text-2); margin-top:6px; line-height:1.45; }
+
+/* ── PODCAST SECTION ─────────────────────────────── */
+.podcast-wrap { background:var(--bg); padding:5.5rem 0; border-top:1px solid var(--border-2); }
+.podcast-wrap .label { color:var(--gold); }
+.podcast-wrap .label::before { background:var(--gold); }
+.podcast-wrap .s-title { color:var(--text); }
+.podcast-wrap .s-sub { color:var(--text-2); }
+.podcast-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:3rem; }
+.podcast-card {
+  background:var(--white);
+  border:1px solid var(--border-2); border-radius:var(--r3);
+  padding:2.5rem; box-shadow:var(--shadow-sm);
+  transition:border-color 0.2s, box-shadow 0.2s;
+}
+.podcast-card:hover { border-color:var(--gold-bd); box-shadow:var(--shadow-md); }
+.pod-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--gold-dim); border:1px solid var(--gold-bd);
+  border-radius:20px; padding:4px 12px;
+  font-size:0.67rem; color:var(--gold);
+  letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;
+}
+.podcast-card h3 { font-family:var(--ff-d); font-size:1.15rem; color:var(--text); margin-bottom:0.5rem; font-weight:700; }
+.podcast-card p { font-size:0.85rem; color:var(--text-2); line-height:1.65; margin-bottom:1.5rem; }
+.podcast-card audio { width:100%; margin-top:0.5rem; border-radius:var(--r); accent-color:var(--gold); }
+.pod-meta {
+  display:flex; align-items:center; gap:6px; margin-top:0.75rem;
+  font-size:0.72rem; color:var(--text-2);
+}
+.pod-meta i { color:var(--gold); }
+
+/* ── DOWNLOADS ───────────────────────────────────── */
+.dl-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:2.5rem; }
+.dl-card {
+  background:var(--white); border:1px solid var(--border-2);
+  border-radius:var(--r2); padding:1.75rem 2rem;
+  display:flex; align-items:flex-start; gap:1.25rem;
+  text-decoration:none; transition:all 0.22s var(--ease);
+  box-shadow:var(--shadow-sm);
+}
+.dl-card:hover { border-color:var(--blue); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+.dl-icon {
+  width:48px; height:48px; flex-shrink:0; border-radius:12px;
+  background:var(--blue-lt); display:flex; align-items:center; justify-content:center;
+  color:var(--blue); font-size:1.35rem; transition:all 0.2s;
+}
+.dl-card:hover .dl-icon { background:var(--blue); color:#fff; }
+.dl-title { font-family:var(--ff-d); font-size:0.95rem; font-weight:600; color:var(--navy); margin-bottom:4px; }
+.dl-desc  { font-size:0.8rem; color:var(--text-2); line-height:1.55; }
+.dl-meta  { font-size:0.68rem; color:var(--blue); margin-top:6px; font-weight:600; display:flex; align-items:center; gap:5px; }
+
+/* ── CONDITIONS TABLE ────────────────────────────── */
+.cond-table { width:100%; border-collapse:collapse; }
+.cond-table tr { border-bottom:1px solid var(--border-2); }
+.cond-table tr:last-child { border-bottom:none; }
+.cond-table td { padding:0.9rem 1.25rem; font-size:0.9rem; }
+.cond-table td:first-child { font-weight:600; color:var(--navy); width:220px; background:var(--bg); }
+.cond-table td:last-child { color:var(--text-2); }
+.cond-table tr:nth-child(even) td:last-child { background:#fafbff; }
+
+/* ── QUOTE BLOCK ─────────────────────────────────── */
+.quote-block {
+  background:var(--gold-lt);
+  border-left:4px solid var(--gold); border-radius:0 var(--r2) var(--r2) 0;
+  padding:2rem 2.5rem; margin:2.5rem 0;
+}
+.quote-block p { color:var(--text-2); font-style:italic; font-size:1.05rem; line-height:1.8; }
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media(max-width:1024px) {
+  .vs-stats-grid { grid-template-columns:repeat(3,1fr); }
+  .case-stats { grid-template-columns:repeat(2,1fr); }
+  .svc-card { grid-template-columns:48px 1fr; }
+  .svc-freq { display:none; }
+}
+@media(max-width:768px) {
+  .vs-stats-grid { grid-template-columns:repeat(2,1fr); }
+  .podcast-grid  { grid-template-columns:1fr; }
+  .dl-grid       { grid-template-columns:1fr; }
+  .svc-card { grid-template-columns:44px 1fr; gap:1rem; padding:1.25rem 1.5rem; }
+}
+@media(max-width:480px) {
+  .case-stats { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav nav-on-dark" id="mainNav">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">HDH <em>AG</em></span>
+      <span class="nav-logo-sub">Hirsch Dynamics AG</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-menu" id="navMenu">
+      <a href="index.html#divisions" data-i18n="nav_divs">Divisions</a>
+      <a href="podcast.html">Podcast</a>
+      <a href="visibal-plattform.html" class="nav-gold active">VISIBAL ✦</a>
+      <a href="contact.html" data-i18n="nav_contact">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta" data-i18n="nav_cta">Book a Call</a>
+    <div class="lang-switcher">
+      <button class="lang-btn" id="langBtn" aria-label="Select language">
+        <i class="ph ph-globe"></i>
+        <span id="langCurrent">EN</span>
+        <i class="ph ph-caret-down lang-caret"></i>
+      </button>
+      <div class="lang-menu" id="langMenu">
+        <button data-lang="de" data-label="DE">DE</button>
+        <button data-lang="en" data-label="EN" class="active">EN</button>
+        <button data-lang="es" data-label="ES">ES</button>
+        <button data-lang="fr" data-label="FR">FR</button>
+      </div>
+    </div>  </div>
+</nav>
+
+<!-- ═══════════════ HERO ════════════════════════════ -->
+<div class="vs-hero">
+  <div class="wrap">
+    <div class="label reveal" data-i18n="vs_label">VISIBAL · powered by HIT · Hirsch Dynamics AG</div>
+    <h1 class="reveal d1" data-i18n-html="vs_title">The Practice That<br>Communicates, Wins.</h1>
+    <p class="vs-hero-italic reveal d2" data-i18n="vs_italic">Not the best. Not the most expensive. The most visible.</p>
+    <p class="vs-hero-desc reveal d2" data-i18n="vs_desc">VISIBAL automates your entire patient communication — Website, AI Chatbot, Recall Mailing, Direct Messages, Podcast, Newsletter. Fully white-label. Under your name.</p>
+    <div class="reveal d3" style="display:flex;gap:1rem;flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-gold"><span data-i18n="vs_cta">Book a Discovery Call</span> <i class="ph ph-arrow-right"></i></a>
+      <a href="visual%20for%20VISIBAL/VISIBAL_Godin_Executive_Summary.pdf" class="btn btn-outline" style="border-color:rgba(255,255,255,0.25);color:#fff" download>
+        Download Executive Summary <i class="ph ph-download-simple"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ STATS ════════════════════════════ -->
+<div class="vs-stats">
+  <div class="vs-stats-grid">
+    <div class="vs-stat reveal">
+      <div class="vs-stat-n">26×</div>
+      <div class="vs-stat-l">cheaper — reactivation vs. new patient acquisition</div>
+      <div class="vs-stat-s">Patientdesk.ai 2026</div>
+    </div>
+    <div class="vs-stat reveal d1">
+      <div class="vs-stat-n">+23%</div>
+      <div class="vs-stat-l">more revenue via automated recall</div>
+      <div class="vs-stat-s">DentalAIAssist 2024 · 500+ practices</div>
+    </div>
+    <div class="vs-stat reveal d2">
+      <div class="vs-stat-n">−41%</div>
+      <div class="vs-stat-l">fewer no-shows with automated reminders</div>
+      <div class="vs-stat-s">DentalAIAssist 2024</div>
+    </div>
+    <div class="vs-stat reveal d3">
+      <div class="vs-stat-n">+73%</div>
+      <div class="vs-stat-l">higher appointment booking rate</div>
+      <div class="vs-stat-s">&nbsp;</div>
+    </div>
+    <div class="vs-stat reveal d4">
+      <div class="vs-stat-n">36:1</div>
+      <div class="vs-stat-l">email ROI in the dental sector</div>
+      <div class="vs-stat-s">Industry benchmark</div>
+    </div>
+    <div class="vs-stat reveal">
+      <div class="vs-stat-n">Month 1</div>
+      <div class="vs-stat-l">break-even — Case Study Vienna</div>
+      <div class="vs-stat-s">Dr. XYZ · Wien</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ THE PROBLEM ══════════════════════ -->
+<section class="section section-alt">
+  <div class="wrap-sm">
+    <div class="reveal">
+      <div class="label">The Problem</div>
+      <h2 class="s-title">17% of Your Patients Disappear Every Year.</h2>
+      <div class="blue-bar"></div>
+    </div>
+    <div class="alert-box reveal d1">
+      <p><strong>Silently. Without cancelling. Without goodbye.</strong><br>
+      Not because they're unhappy. Not because the competition is better. Because you forgot to remind them. <strong>That's fixable.</strong></p>
+    </div>
+    <p class="reveal d1" style="font-size:1rem;color:var(--text-2);line-height:1.85;margin:1.5rem 0">
+      For a practice with <strong style="color:var(--navy)">1,000 active patients</strong> — that's <strong style="color:var(--navy)">170 lost patients per year</strong> and
+      <strong style="color:var(--navy)">CHF 952,000</strong> in lifetime revenue disappearing through nothing more than missing communication.
+    </p>
+
+    <div class="reveal d2">
+      <div class="label" style="margin-top:2.5rem">Cost Comparison</div>
+      <h3 style="font-family:var(--ff-d);font-size:1.4rem;color:var(--navy);margin-top:0.8rem">New Patient Acquisition vs. CRM Retention</h3>
+    </div>
+    <div class="reveal d2" style="overflow-x:auto">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th class="hd-row">&nbsp;</th>
+            <th class="hd-bad">New Acquisition</th>
+            <th class="hd-good">CRM Retention (VISIBAL)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-label">Cost / Patient</td>
+            <td class="td-bad">CHF 150 – 1,435</td>
+            <td class="td-good">CHF 12 – 50</td>
+          </tr>
+          <tr>
+            <td class="td-label">ROI</td>
+            <td class="td-bad">Baseline 1×</td>
+            <td class="td-good">5× – 26× better</td>
+          </tr>
+          <tr>
+            <td class="td-label">No-Show Rate</td>
+            <td class="td-bad">Uncontrolled</td>
+            <td class="td-good">−41% (automated)</td>
+          </tr>
+          <tr>
+            <td class="td-label">Your Effort</td>
+            <td class="td-bad">High (budget, ads)</td>
+            <td class="td-good">10 Min. / Month</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert-box reveal d3" style="margin-top:1.5rem">
+      <p><strong>Break-even:</strong> One recall appointment generates CHF 400–600. The VISIBAL subscription pays for itself with <strong>2–3 extra appointments per month</strong>. Everything after that is profit you keep.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FULL SERVICE SCOPE ═══════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="label">Full Service Scope</div>
+      <h2 class="s-title">Everything. Under Your Name.</h2>
+      <p class="s-sub">VISIBAL handles every patient communication channel — automatically, white-label, with zero setup effort from your practice.</p>
+    </div>
+    <div class="svc-grid reveal d1">
+
+      <div class="svc-card">
+        <div class="svc-icon"><i class="ph ph-globe"></i></div>
+        <span class="svc-freq">Ongoing</span>
+        <div class="svc-body">
+          <div class="svc-title">Website &amp; SEO</div>
+          <p class="svc-desc">Build, maintain, and translate your practice website in DE / EN / UA / RU. Technical SEO and Google optimisation included — your practice visible in every market you serve.</p>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon"><i class="ph ph-robot"></i></div>
+        <span class="svc-freq">24/7</span>
+        <div class="svc-body">
+          <div class="svc-title">AI Chatbot 24/7</div>
+          <p class="svc-desc">Fully automated chatbot trained on your practice profile. Multilingual appointment CTA — captures every inquiry after hours. Up to 20% of bookings happen after 18:00. Zero missed opportunities.</p>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon"><i class="ph ph-envelope"></i></div>
+        <span class="svc-freq">1× / Month</span>
+        <div class="svc-body">
+          <div class="svc-title">Monthly Recall Mailing</div>
+          <p class="svc-desc">Personalised recall reminder in your practice CI — proven to generate +25–40% more check-up appointments. Text, design, and send: fully automated. Your approval: 10 minutes.</p>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon"><i class="ph ph-chat-circle-dots"></i></div>
+        <span class="svc-freq">Every 12 Days</span>
+        <div class="svc-body">
+          <div class="svc-title">Direct Messaging</div>
+          <p class="svc-desc">Short personal messages — automated — sent every 12 days for patient retention and referral activation. Keeps the relationship warm between appointments with zero manual effort.</p>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon"><i class="ph ph-microphone"></i></div>
+        <span class="svc-freq">2× / Month</span>
+        <div class="svc-body">
+          <div class="svc-title">Practice Podcast</div>
+          <p class="svc-desc">AI-produced episodes published to Spotify, Apple Podcasts, and YouTube. Builds your expert status — patients who trust you don't decide based on price. You just name the topic.</p>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon"><i class="ph ph-newspaper"></i></div>
+        <span class="svc-freq">1× / Quarter</span>
+        <div class="svc-body">
+          <div class="svc-title">Quarterly Newsletter</div>
+          <p class="svc-desc">Premium design newsletter with practice news, health tips, and cross-selling — fully in your CI. Text, design, and send: zero effort from your team. Keeps patients engaged and referral-ready.</p>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon"><i class="ph ph-chart-bar"></i></div>
+        <span class="svc-freq">Monthly</span>
+        <div class="svc-body">
+          <div class="svc-title">Monthly Reporting</div>
+          <p class="svc-desc">Open rates, click-through rates, bookings, and full ROI documentation — transparent and clear. You always know exactly what VISIBAL is generating for your practice, in numbers.</p>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon"><i class="ph ph-video-camera"></i></div>
+        <span class="svc-freq">1× / Quarter</span>
+        <div class="svc-body">
+          <div class="svc-title">Quarterly Strategy Review</div>
+          <p class="svc-desc">A direct call with Linz Crawford, CEO of HDH AG — not an anonymous support hotline. Personal review of your results, strategy adjustments, and next-quarter goals. 1 hour per quarter.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 5 QUESTIONS ══════════════════════ -->
+<section class="section section-alt">
+  <div class="wrap-sm">
+    <div class="reveal">
+      <div class="label">Self-Assessment</div>
+      <h2 class="s-title">5 Questions for Your Practice</h2>
+      <p class="s-sub">Every "No" answer means your practice is actively losing revenue today.</p>
+    </div>
+    <div class="q-list">
+      <div class="q-item reveal d1">
+        <div class="q-num">Question 01</div>
+        <div class="q-text">Do you have an automated system that reminds patients of check-up appointments?</div>
+        <div class="q-risk">→ 17% of your patient base disappears each year. Silently. Without you noticing.</div>
+        <div class="q-sol">Solution: VISIBAL Monthly Mailing + Direct Messaging</div>
+      </div>
+      <div class="q-item reveal d1">
+        <div class="q-num">Question 02</div>
+        <div class="q-text">Can patients request appointments outside your opening hours?</div>
+        <div class="q-risk">→ Up to 20% of inquiries sent after 18:00 are lost — permanently.</div>
+        <div class="q-sol">Solution: VISIBAL AI Chatbot 24/7</div>
+      </div>
+      <div class="q-item reveal d2">
+        <div class="q-num">Question 03</div>
+        <div class="q-text">Is your practice website available in at least 2 languages?</div>
+        <div class="q-risk">→ You're excluding up to 30% of your potential patient base by offering only one language.</div>
+        <div class="q-sol">Solution: VISIBAL Website &amp; SEO (DE / EN / UA / RU)</div>
+      </div>
+      <div class="q-item reveal d2">
+        <div class="q-num">Question 04</div>
+        <div class="q-text">Do you communicate with your patients more than once per quarter?</div>
+        <div class="q-risk">→ Your patients forget you between appointments — while the competition communicates consistently.</div>
+        <div class="q-sol">Solution: VISIBAL Newsletter + Direct Messaging</div>
+      </div>
+      <div class="q-item reveal d3">
+        <div class="q-num">Question 05</div>
+        <div class="q-text">Do you have a measurable channel to build your expert status in your community?</div>
+        <div class="q-risk">→ Without expert status, patients decide on price — not trust.</div>
+        <div class="q-sol">Solution: VISIBAL Practice Podcast — 2 episodes per month</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ EXPECTED RESULTS ═════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="label">Expected Results</div>
+      <h2 class="s-title">What Changes After 6 Months</h2>
+      <p class="s-sub">Measured KPIs across VISIBAL practices — compared to baseline without the platform.</p>
+    </div>
+    <div class="reveal d1" style="overflow-x:auto;margin-top:2rem">
+      <table class="kpi-table">
+        <thead>
+          <tr>
+            <th class="kh-label">KPI</th>
+            <th class="kh-before">Without VISIBAL</th>
+            <th class="kh-after">With VISIBAL (Target)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="kd-label">Recall Rate</td>
+            <td class="kd-before">60 – 70%</td>
+            <td class="kd-after">&gt; 85%</td>
+          </tr>
+          <tr>
+            <td class="kd-label">No-Show Rate</td>
+            <td class="kd-before">15 – 20%</td>
+            <td class="kd-after">&lt; 10% (−41%)</td>
+          </tr>
+          <tr>
+            <td class="kd-label">Appointment Increase</td>
+            <td class="kd-before">Baseline</td>
+            <td class="kd-after">+ 25 – 40%</td>
+          </tr>
+          <tr>
+            <td class="kd-label">New Appointments / Month</td>
+            <td class="kd-before">Organic only</td>
+            <td class="kd-after">+ 20 – 40% via recall</td>
+          </tr>
+          <tr>
+            <td class="kd-label">Patient Retention (5yr)</td>
+            <td class="kd-before">43 – 50%</td>
+            <td class="kd-after">85 – 90%+</td>
+          </tr>
+          <tr>
+            <td class="kd-label">Recall Revenue</td>
+            <td class="kd-before">Baseline</td>
+            <td class="kd-after">+ 23%</td>
+          </tr>
+          <tr>
+            <td class="kd-label">Referral Rate</td>
+            <td class="kd-before">&lt; 10%</td>
+            <td class="kd-after">&gt; 30% via retention</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CASE STUDY ════════════════════════ -->
+<section class="section section-alt">
+  <div class="wrap-sm">
+    <div class="reveal">
+      <div class="label">Case Study</div>
+      <h2 class="s-title">Dr. XYZ · Vienna, Austria</h2>
+    </div>
+    <div class="case-card reveal d1">
+      <div class="case-tag"><i class="ph ph-seal-check"></i> Verified Result</div>
+      <p class="case-body">A multi-language urban dental practice in Vienna. VISIBAL implemented across all patient communication touchpoints — four languages active from day one, full automation operational from week two. Onboarding completed in under 8 weeks from first conversation to live system.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-n">Month 1</div>
+          <div class="case-stat-l">Break-even achieved</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">+35%</div>
+          <div class="case-stat-l">More check-up appointments</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">4 Lang.</div>
+          <div class="case-stat-l">DE / EN / UA / RU active</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">8 Wks</div>
+          <div class="case-stat-l">Full implementation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PODCAST ══════════════════════════ -->
+<div class="podcast-wrap">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="label">VISIBAL Podcast</div>
+      <h2 class="s-title">Listen: The Practice That Communicates, Wins.</h2>
+      <p class="s-sub">Hear directly from the VISIBAL team what automated patient communication delivers for your practice — in depth or as a quick overview.</p>
+    </div>
+    <div class="podcast-grid reveal d1">
+
+      <div class="podcast-card">
+        <div class="pod-badge"><i class="ph ph-play-circle"></i> Short Version</div>
+        <h3>VISIBAL — Quick Overview</h3>
+        <p>The essentials in under 15 minutes. What VISIBAL does, how the automation works, and what it means for your practice revenue. Perfect for a busy schedule.</p>
+        <audio controls preload="metadata">
+          <source src="visual%20for%20VISIBAL/VISIBAL_Podcast_Kurzfassung.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+        <div class="pod-meta"><i class="ph ph-clock"></i> 6 min 28 sec &nbsp;·&nbsp; M4A Audio</div>
+      </div>
+
+      <div class="podcast-card">
+        <div class="pod-badge"><i class="ph ph-play-circle"></i> Full Version</div>
+        <h3>VISIBAL — Complete Analysis</h3>
+        <p>The full deep-dive. All data, all case studies, the complete implementation framework, and everything else a practice needs to understand before making a decision.</p>
+        <audio controls preload="metadata">
+          <source src="visual%20for%20VISIBAL/VISIBAL_Podcast_Langfassung.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+        <div class="pod-meta"><i class="ph ph-clock"></i> 27 min 13 sec &nbsp;·&nbsp; M4A Audio</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ DOWNLOADS ════════════════════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="label">Research &amp; Documentation</div>
+      <h2 class="s-title">Download All Materials</h2>
+      <p class="s-sub">The complete VISIBAL evidence base — executive summaries, full research study, strategy paper, and the practice implementation guide.</p>
+    </div>
+    <div class="dl-grid reveal d1">
+
+      <a href="visual%20for%20VISIBAL/VISIBAL_Godin_Executive_Summary.pdf" class="dl-card" download>
+        <div class="dl-icon"><i class="ph ph-file-text"></i></div>
+        <div>
+          <div class="dl-title">Executive Summary</div>
+          <div class="dl-desc">The three numbers that matter. Problem, solution, break-even — the full argument in 3 pages.</div>
+          <div class="dl-meta"><i class="ph ph-download-simple"></i> PDF · 3 pages</div>
+        </div>
+      </a>
+
+      <a href="visual%20for%20VISIBAL/VISIBAL_Godin_Strategy_EN.pdf" class="dl-card" download>
+        <div class="dl-icon"><i class="ph ph-presentation-chart"></i></div>
+        <div>
+          <div class="dl-title">Customer Strategy &amp; Offer</div>
+          <div class="dl-desc">Full service scope, target groups, 4-step sales process, conditions and KPI projections.</div>
+          <div class="dl-meta"><i class="ph ph-download-simple"></i> PDF · 4 pages</div>
+        </div>
+      </a>
+
+      <a href="visual%20for%20VISIBAL/VISIBAL_Godin_Praxis_Leitfaden.pdf" class="dl-card" download>
+        <div class="dl-icon"><i class="ph ph-clipboard-text"></i></div>
+        <div>
+          <div class="dl-title">Practice Implementation Guide</div>
+          <div class="dl-desc">5 diagnostic questions. 5-step implementation plan. What HDH AG handles for you — and what you don't have to do.</div>
+          <div class="dl-meta"><i class="ph ph-download-simple"></i> PDF · 3 pages</div>
+        </div>
+      </a>
+
+      <a href="visual%20for%20VISIBAL/VISIBAL_Godin_Grundlagenstudie_25S.pdf" class="dl-card" download>
+        <div class="dl-icon"><i class="ph ph-book-open"></i></div>
+        <div>
+          <div class="dl-title">Research Foundation Study</div>
+          <div class="dl-desc">The full 25-page academic study on patient retention and CRM effectiveness in dental and orthodontic practices.</div>
+          <div class="dl-meta"><i class="ph ph-download-simple"></i> PDF · 25 pages</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CONDITIONS ════════════════════════ -->
+<section class="section">
+  <div class="wrap-sm">
+    <div class="reveal">
+      <div class="label">Terms &amp; Conditions</div>
+      <h2 class="s-title">Simple. Transparent. Fair.</h2>
+    </div>
+    <div class="reveal d1" style="background:var(--white);border:1px solid var(--border-2);border-radius:var(--r2);overflow:hidden;margin-top:2rem;box-shadow:var(--shadow-sm)">
+      <table class="cond-table">
+        <tbody>
+          <tr>
+            <td>Minimum Term</td>
+            <td>6 months — Phase 1, fixed term, non-cancellable</td>
+          </tr>
+          <tr>
+            <td>Notice Period</td>
+            <td>3 months to end of calendar month (from month 7 onward)</td>
+          </tr>
+          <tr>
+            <td>Billing</td>
+            <td>Monthly in advance</td>
+          </tr>
+          <tr>
+            <td>Governing Law</td>
+            <td>Swiss law (CO / CC)</td>
+          </tr>
+          <tr>
+            <td>Jurisdiction</td>
+            <td>By agreement — default: Zurich, Switzerland</td>
+          </tr>
+          <tr>
+            <td>White-Label</td>
+            <td>100% — all communication runs exclusively under your practice name</td>
+          </tr>
+          <tr>
+            <td>Setup Effort</td>
+            <td>Zero — HDH AG handles everything. Practice effort: 10 min/month approval</td>
+          </tr>
+          <tr>
+            <td>Data Protection</td>
+            <td>DSG (CH) / GDPR (DE, AT) — fully compliant</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="quote-block reveal d2">
+      <p>"If it doesn't work for you, you stop. 3 months' notice. No dispute. No fine print. That's how we work."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA BANNER ════════════════════════ -->
+<div class="cta-banner">
+  <div class="wrap">
+    <div class="label" style="justify-content:center;margin:0 auto 1.25rem;color:rgba(255,255,255,0.6)">Get Started</div>
+    <h2 class="reveal">Ready to stop losing patients?</h2>
+    <p class="reveal d1">No form. No sales team. CEO Linz Crawford responds personally — within 24 hours. All conversations are confidential.</p>
+    <div class="reveal d2" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary">Email Linz Crawford <i class="ph ph-arrow-right"></i></a>
+      <a href="https://wa.me/447592198725" class="btn btn-outline" style="border-color:rgba(255,255,255,0.25);color:#fff">WhatsApp +44 7592 198725</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="f-brand-name">HDH <em>AG</em></div>
+        <p class="f-brand-tag">Hirsch Dynamics AG<br>Swiss Precision &amp; Know-how<br>Global Innovation Partner</p>
+        <div class="f-certs">
+          <span class="f-cert">FDA 510(K)</span>
+          <span class="f-cert">CE MDR 2017/745</span>
+          <span class="f-cert">ISO 13485</span>
+        </div>
+        <div class="f-social">
+          <a href="https://www.linkedin.com/company/hirsch-advanced-technologies-gmbh/" target="_blank" rel="noopener" aria-label="LinkedIn" class="f-social-link"><i class="ph ph-linkedin-logo"></i></a>
+          <a href="https://www.youtube.com/channel/UCNhtc2e2zEk64QOtgOJaAHA" target="_blank" rel="noopener" aria-label="YouTube" class="f-social-link yt"><i class="ph ph-youtube-logo"></i></a>
+          <a href="https://web.facebook.com/hirschdynamics/" target="_blank" rel="noopener" aria-label="Facebook" class="f-social-link fb"><i class="ph ph-facebook-logo"></i></a>
+          <a href="https://www.instagram.com/hirschdynamics/" target="_blank" rel="noopener" aria-label="Instagram" class="f-social-link ig"><i class="ph ph-instagram-logo"></i></a>
+        </div>
+      </div>
+      <div class="f-col"><h4 data-i18n="footer_divs">Divisions</h4><a href="cdb.html">CDB – Dental Brackets</a><a href="hit.html">HIT – Health Intelligence</a><a href="ceramedical.html">Ceramedical</a><a href="masterpieces.html">Masterpieces</a><a href="visibal-plattform.html">VISIBAL ✦</a></div>
+      <div class="f-col"><h4 data-i18n="footer_loc">Locations</h4><p>North Carolina, USA</p><p>Zürich, Switzerland</p><p>Seibersdorf, Austria</p><p>Shenzhen, China</p></div>
+      <div class="f-col"><h4 data-i18n="footer_contact">Contact</h4><a href="mailto:lc@hirschdynamics.com">lc@hirschdynamics.com</a><a href="mailto:office@hirschdynamics.com">office@hirschdynamics.com</a><a href="tel:+447592198725">+44 7592 198725</a><a href="contact.html">Contact Page →</a></div>
+    </div>
+    <div class="f-bottom"><p>© 2026 HDH AG – Hirsch Dynamics AG · All rights reserved</p><a href="impressum.html">Legal Notice / Impressum</a></div>
+  </div>
+</footer>
+
+</div>
+<script src="translations.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
