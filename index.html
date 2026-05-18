@@ -479,7 +479,9 @@
   .visibal-bg-text { display:none; }
   .ceo-card { grid-template-columns:1fr; }
   .stats-inner { grid-template-columns:repeat(2,1fr); }
-  .stat-cell:nth-child(2){ border-right:none; }
+  .stat-cell               { border-right:1px solid var(--border-2); border-bottom:1px solid var(--border-2); }
+  .stat-cell:nth-child(even) { border-right:none; }
+  .stat-cell:nth-last-child(-n+2) { border-bottom:none; }
   .swiss-inner { grid-template-columns:1fr; gap:1.5rem; }
   .swiss-flag-col { flex-direction:row; align-items:center; gap:1rem; }
 }
