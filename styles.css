@@ -905,10 +905,10 @@ footer::before {
   .vsfw-6 { bottom:10% !important; left:auto !important;    right:2% !important;  }
 }
 @media (max-width:768px) {
-  .hero-visual  { margin:0 auto !important; }
+  .hero-visual  { margin:0 auto !important; max-height:none !important; }
 }
 @media (max-width:600px) {
   .rg-3, .rg-4, .rg-5 { grid-template-columns:1fr !important; }
-  .hero-visual  { width:88vw !important; margin:0 auto !important; max-height:52vw; overflow:hidden; }
-  .hero-team-img { width:100% !important; height:100% !important; object-fit:cover; object-position:top center; }
+  .hero-visual  { width:calc(100% + 3rem) !important; margin:0 -1.5rem !important; max-height:none !important; overflow:visible !important; }
+  .hero-team-img { width:100% !important; height:auto !important; display:block; }
 }
