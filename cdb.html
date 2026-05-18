@@ -158,16 +158,18 @@
 .cdb-fw-4 { top:72%; right:-10%;animation:cdbF4 4.4s ease-in-out infinite 0.3s; }
 
 @media (max-width:900px) {
-  .page-hero .page-hero-grid  { grid-template-columns:1fr; align-items:flex-start; }
-  .page-hero .page-hero-text-col { padding-top:2rem; }
+  .page-hero { min-height:auto !important; height:auto !important; padding-bottom:0 !important; }
+  .page-hero .page-hero-grid  { grid-template-columns:1fr; gap:0; align-items:flex-start; height:auto; }
+  .page-hero .page-hero-text-col { padding-top:0; padding-bottom:0.75rem; }
   .page-hero .page-hero-img-col {
     display:flex !important; justify-content:center; align-items:flex-end;
-    height:280px; overflow:hidden;
+    width:calc(100% + 2.5rem); margin-left:-1.25rem; overflow:hidden;
   }
-  .page-hero .page-hero-img-wrap { height:280px; }
+  .page-hero .page-hero-img-wrap { height:360px; width:100%; }
   .page-hero .page-hero-img {
-    position:relative !important; width:auto !important; max-width:100% !important;
-    height:280px !important; right:auto !important; bottom:auto !important;
+    position:relative !important; width:100% !important; max-width:100% !important;
+    height:360px !important; right:auto !important; bottom:auto !important;
+    object-fit:cover; object-position:top center;
     filter:drop-shadow(0 -8px 24px rgba(0,0,0,0.18));
   }
   /* Floating widgets: show only 2, scale down, reposition inside image */
@@ -180,8 +182,8 @@
   .cdb-fw-val   { font-size:0.56rem !important; }
   .cdb-fw-ring  { display:none !important; }
   .cdb-fw-3, .cdb-fw-4 { display:none !important; }
-  .cdb-fw-1 { top:6%  !important; left:2%  !important; right:auto !important; }
-  .cdb-fw-2 { top:6%  !important; right:2% !important; left:auto  !important; }
+  .cdb-fw-1 { top:6% !important; left:2%  !important; right:auto !important; }
+  .cdb-fw-2 { top:6% !important; right:2% !important; left:auto  !important; }
 }
 </style>
 </head>
