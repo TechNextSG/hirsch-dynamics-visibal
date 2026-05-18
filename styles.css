@@ -884,9 +884,25 @@ footer::before {
   .rg-3         { grid-template-columns:1fr 1fr !important; }
   /* page-hero: auto height prevents content clipping on mobile */
   .page-hero    { height:auto !important; min-height:100svh; }
-  /* VISIBAL floating widgets overflow when layout stacks */
-  .vsfw         { display:none !important; }
-  .visibal-orb  { display:none; }
+  /* VISIBAL floating widgets — reposition inside image bounds on mobile
+     (negative left/right offsets cause overflow at desktop layout)      */
+  .vsfw {
+    display:flex !important;
+    z-index:3 !important;
+    padding:0.3rem 0.65rem 0.3rem 0.35rem !important;
+    gap:0.35rem !important;
+    animation:none !important;
+  }
+  .vsfw-icon  { width:26px !important; height:26px !important; font-size:0.75rem !important; }
+  .vsfw-label { font-size:0.64rem !important; }
+  .vsfw-val   { font-size:0.56rem !important; }
+  .vsfw-ring  { display:none !important; }
+  /* Show 4 corner widgets, hide the mid-left/mid-right pair */
+  .vsfw-3, .vsfw-4 { display:none !important; }
+  .vsfw-1 { top:4%  !important; left:2% !important;         right:auto !important; }
+  .vsfw-2 { top:4%  !important; left:auto !important;       right:2% !important;  }
+  .vsfw-5 { bottom:20% !important; left:2% !important;      right:auto !important; }
+  .vsfw-6 { bottom:10% !important; left:auto !important;    right:2% !important;  }
 }
 @media (max-width:768px) {
   /* hero-visual: remove negative margin that pulls image over text */
