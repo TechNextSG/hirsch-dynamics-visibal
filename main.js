@@ -365,20 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 
-// ─── MOBILE STICKY CTA BAR ───────────────────────────────────────────────────
-(function() {
-  if (document.querySelector('.contact-hero')) return; // skip on contact page
-  const bar = document.createElement('div');
-  bar.className = 'mob-cta-bar';
-  bar.innerHTML =
-    '<a href="contact.html" class="mob-cta-call"><i class="ph ph-phone"></i> Book a Call</a>' +
-    '<a href="https://wa.me/447592198725" class="mob-cta-wa" target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo"></i> WhatsApp</a>';
-  document.body.appendChild(bar);
-  const update = () => document.body.classList.toggle('has-mob-cta', window.innerWidth <= 768);
-  update();
-  window.addEventListener('resize', update, { passive: true });
-})();
-
 // ─── Q-ITEM ACCORDION ────────────────────────────────────────────────────────
 document.querySelectorAll('.q-item').forEach(item => {
   const num  = item.querySelector('.q-num');
