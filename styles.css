@@ -750,7 +750,14 @@ footer::before {
   .nav-menu a.nav-gold:hover                 { background:var(--gold-dim); }
   .nav-cta    { display:none; }
   .hamburger  { display:flex; }
-  .footer-grid   { grid-template-columns:1fr; gap:2rem; }
+  .footer-grid   { grid-template-columns:1fr 1fr; gap:1.25rem 1.5rem; padding-bottom:1.75rem; margin-bottom:1.25rem; }
+  .footer-grid > *:first-child { grid-column:1 / -1; }
+  footer { padding:2.5rem 0 1.5rem; }
+  .f-brand-tag  { font-size:0.75rem; margin-bottom:0.85rem; }
+  .f-col h4     { margin-bottom:0.75rem; font-size:0.63rem; }
+  .f-col a, .f-col p { font-size:0.78rem; margin-bottom:0.45rem; }
+  .f-certs      { gap:4px; }
+  .f-cert       { font-size:0.58rem; padding:2px 7px; }
   .features-grid { grid-template-columns:1fr; }
   .wrap, .wrap-sm { padding:0 1.25rem; }
   .section     { padding:4rem 0; }
