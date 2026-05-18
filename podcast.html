@@ -28,6 +28,31 @@
   padding-top: 5rem;
   position: relative; z-index: 2;
 }
+/* ── PODCAST HERO — MOBILE IMAGE BELOW TITLE ── */
+@media (max-width:900px) {
+  .page-hero .page-hero-grid {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+  .page-hero .page-hero-text-col { padding-top: 2rem; }
+  .page-hero .page-hero-img-col {
+    display: flex !important;
+    justify-content: center;
+    align-items: flex-end;
+    height: 260px;
+    overflow: hidden;
+  }
+  .page-hero .page-hero-img-wrap { height: 260px; }
+  .page-hero .page-hero-img {
+    position: relative !important;
+    width: auto !important;
+    max-width: 100% !important;
+    height: 260px !important;
+    right: auto !important;
+    bottom: auto !important;
+    filter: drop-shadow(0 -8px 24px rgba(0,0,0,0.18));
+  }
+}
 /* ── FEATURED EPISODE ─────────────────────── */
 .pod-featured {
   background:var(--grad-hero); background-size:200% 200%;
