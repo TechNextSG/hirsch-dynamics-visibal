@@ -248,10 +248,33 @@
 }
 .div-link:hover { background:var(--blue); gap:12px; }
 @media(max-width:768px) {
-  .timeline::before { left:20px; transform:none; }
-  .tl-item { grid-template-columns:40px 1fr; }
-  .tl-img { display:none; }
-  .tl-center { justify-content:flex-start; }
+  .timeline::before { display:none; }
+  .tl-item {
+    display:block;
+    background:var(--white);
+    border:1px solid var(--border-2);
+    border-radius:var(--r2);
+    overflow:hidden;
+    box-shadow:var(--shadow-sm);
+    margin-bottom:1rem;
+  }
+  .tl-img {
+    display:block;
+    aspect-ratio:16/7;
+    height:160px;
+    border-radius:0;
+    box-shadow:none;
+  }
+  .tl-center { display:none; }
+  .tl-card {
+    padding:1.25rem 1.5rem;
+    align-items:flex-start;
+    text-align:left;
+  }
+  .div-name { font-size:1.2rem; margin-bottom:0.4rem; }
+  .div-loc  { margin-bottom:0.6rem; }
+  .div-desc { font-size:0.87rem; margin-bottom:1.1rem; }
+  .div-link { width:100%; justify-content:center; }
 }
 
 /* ── VISIBAL SECTION ──────────────────────── */
