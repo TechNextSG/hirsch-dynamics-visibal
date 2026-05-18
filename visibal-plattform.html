@@ -838,5 +838,42 @@
 </div>
 <script src="translations.js"></script>
 <script src="main.js"></script>
+<script>
+// ── VISIBAL SECTION PROGRESS DOTS ──────────────────────────────────────────
+(function() {
+  const labels = ['Stats','Problem','Services','Questions','Results','Case Study','Downloads'];
+  // Collect tracked sections: stats strip + first 6 .section elements
+  const statsEl = document.querySelector('.vs-stats');
+  const sections = Array.from(document.querySelectorAll('.section')).slice(0, 6);
+  const tracked = statsEl ? [statsEl, ...sections] : sections;
+  if (tracked.length < 2) return;
+
+  // Build nav
+  const nav = document.createElement('nav');
+  nav.className = 'vs-progress';
+  nav.setAttribute('aria-label', 'Page sections');
+  const dots = tracked.map((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'vs-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', labels[i] || 'Section ' + (i + 1));
+    d.addEventListener('click', () => tracked[i].scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    nav.appendChild(d);
+    return d;
+  });
+  document.body.appendChild(nav);
+
+  // Update active dot on scroll
+  const update = () => {
+    const mid = window.innerHeight * 0.4;
+    let active = 0;
+    tracked.forEach((el, i) => {
+      if (el.getBoundingClientRect().top <= mid) active = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === active));
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
 </body>
 </html>

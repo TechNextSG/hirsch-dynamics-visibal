@@ -7,6 +7,13 @@
 <meta name="description" content="Micro-precision ceramic components in zirconia, alumina, and PEEK. ISO 13485 certified cleanroom CIM/MIM manufacturing. ±0.3µm tolerances. Seibersdorf, Austria.">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+@media(max-width:600px) {
+  .cer-tbl th { padding:0.55rem 0.75rem !important; font-size:0.65rem !important; letter-spacing:0.06em !important; }
+  .cer-tbl td { padding:0.55rem 0.75rem !important; font-size:0.78rem !important; }
+  .page-hero h1 { font-size:clamp(1.6rem,7.5vw,2.2rem); }
+}
+</style>
 </head>
 <body>
 <nav class="nav nav-on-dark" id="mainNav">
@@ -158,7 +165,7 @@
       <p class="s-sub" data-i18n="cer_mat_sub">Ceramedical processes ceramics and metals — matched to the biocompatibility and mechanical demands of each application.</p>
     </div>
     <div style="overflow-x:auto;margin-top:2.5rem" class="reveal d1">
-      <table style="width:100%;border-collapse:collapse;border-radius:var(--r2);overflow:hidden;box-shadow:var(--shadow-sm)">
+      <table class="cer-tbl" style="width:100%;border-collapse:collapse;border-radius:var(--r2);overflow:hidden;box-shadow:var(--shadow-sm)">
         <thead>
           <tr>
             <th style="padding:1rem 1.5rem;text-align:left;background:var(--navy);color:#fff;font-family:var(--ff-d);font-size:0.76rem;letter-spacing:0.12em;text-transform:uppercase" data-i18n="cer_th_material">Material</th>

@@ -7,6 +7,14 @@
 <meta name="description" content="AI-powered digital orthodontics. 3D treatment planning, aligner manufacturing, white-label cloud portal.">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+@media(max-width:600px) {
+  .hit-sg > div { padding:1.25rem !important; }
+  .hit-sg .hit-stat-n,
+  .hit-sg > div > div:first-child { font-size:2rem !important; margin-bottom:5px !important; }
+  .page-hero h1 { font-size:clamp(1.6rem,7.5vw,2.4rem); }
+}
+</style>
 </head>
 <body>
 <nav class="nav nav-on-dark" id="mainNav">
@@ -116,7 +124,7 @@
       <h2 class="s-title" data-i18n="hit_perf_title">Numbers from the Field</h2>
       <p class="s-sub" data-i18n="hit_perf_sub">Real metrics from active HIT deployments — the same accuracy, throughput, and turnaround your brand will deliver.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem" class="reveal d1 rg-3">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem" class="hit-sg reveal d1 rg-3">
       <div style="background:var(--white);border:1px solid var(--border-2);border-radius:var(--r2);padding:2rem;text-align:center;box-shadow:var(--shadow-sm)">
         <div style="font-family:var(--ff-d);font-size:2.8rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:8px">98.4%</div>
         <div style="font-size:0.8rem;color:var(--text-2);font-weight:600;text-transform:uppercase;letter-spacing:0.1em" data-i18n="hit_stat1_label">AI Scan Accuracy</div>

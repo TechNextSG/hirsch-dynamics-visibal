@@ -351,3 +351,62 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
 });
+
+// ─── BACK TO TOP ──────────────────────────────────────────────────────────────
+(function() {
+  const btn = document.createElement('button');
+  btn.className = 'btt';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<i class="ph ph-arrow-up"></i>';
+  document.body.appendChild(btn);
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 350);
+  }, { passive: true });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+})();
+
+// ─── MOBILE STICKY CTA BAR ───────────────────────────────────────────────────
+(function() {
+  if (document.querySelector('.contact-hero')) return; // skip on contact page
+  const bar = document.createElement('div');
+  bar.className = 'mob-cta-bar';
+  bar.innerHTML =
+    '<a href="contact.html" class="mob-cta-call"><i class="ph ph-phone"></i> Book a Call</a>' +
+    '<a href="https://wa.me/447592198725" class="mob-cta-wa" target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo"></i> WhatsApp</a>';
+  document.body.appendChild(bar);
+  const update = () => document.body.classList.toggle('has-mob-cta', window.innerWidth <= 768);
+  update();
+  window.addEventListener('resize', update, { passive: true });
+})();
+
+// ─── Q-ITEM ACCORDION ────────────────────────────────────────────────────────
+document.querySelectorAll('.q-item').forEach(item => {
+  const num  = item.querySelector('.q-num');
+  const text = item.querySelector('.q-text');
+  const risk = item.querySelector('.q-risk');
+  const sol  = item.querySelector('.q-sol');
+  if (!text) return;
+
+  const head = document.createElement('div');
+  head.className = 'q-head';
+  const chevron = document.createElement('span');
+  chevron.className = 'q-chevron';
+  chevron.innerHTML = '<i class="ph ph-caret-down"></i>';
+  const inner = document.createElement('div');
+  inner.style.flex = '1';
+  if (num)  inner.appendChild(num);
+  inner.appendChild(text);
+  head.appendChild(inner);
+  head.appendChild(chevron);
+
+  const body = document.createElement('div');
+  body.className = 'q-body';
+  if (risk) body.appendChild(risk);
+  if (sol)  body.appendChild(sol);
+
+  item.innerHTML = '';
+  item.appendChild(head);
+  item.appendChild(body);
+
+  item.addEventListener('click', () => item.classList.toggle('open'));
+});
