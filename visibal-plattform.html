@@ -244,6 +244,19 @@
 @media(max-width:480px) {
   .case-stats { grid-template-columns:1fr 1fr; }
 }
+@media(max-width:600px) {
+  /* Compact comparison & KPI tables */
+  .vs-table th, .vs-table td,
+  .kpi-table th, .kpi-table td { padding:0.45rem 0.6rem; font-size:0.76rem; }
+  .vs-table th, .kpi-table th  { font-size:0.62rem; letter-spacing:0.05em; }
+
+  /* Service cards: single column, no icon */
+  .svc-grid { grid-template-columns:1fr; }
+  .svc-card { grid-template-columns:1fr; padding:0.8rem 1rem; gap:0.3rem; }
+  .svc-icon { display:none !important; }
+  .svc-title { font-size:0.84rem; }
+  .svc-desc  { font-size:0.74rem; }
+}
 </style>
 </head>
 <body>
