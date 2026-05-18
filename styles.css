@@ -98,7 +98,7 @@ h1,h2,h3,h4 { font-family:var(--ff-d); line-height:1.1; font-weight:700; }
   content:''; display:block; width:28px; height:2px;
   background:var(--grad); border-radius:2px;
 }
-.s-title { font-size:clamp(1.9rem,3.8vw,2.8rem); margin-top:0.9rem; color:var(--text); }
+.s-title { font-size:clamp(1.9rem,3.8vw,2.8rem); margin-top:0.9rem; color:var(--text); overflow-wrap:break-word; word-break:break-word; }
 .s-sub { font-size:1rem; color:var(--text-2); max-width:520px; line-height:1.8; margin-top:0.75rem; }
 .blue-bar { width:44px; height:3px; background:var(--grad); border-radius:3px; margin:1.25rem 0; }
 
@@ -922,4 +922,5 @@ footer::before {
   .rg-3, .rg-4, .rg-5 { grid-template-columns:1fr !important; }
   .hero-visual  { width:calc(100% + 3rem) !important; margin:0 -1.5rem !important; max-height:none !important; overflow:visible !important; }
   .hero-team-img { width:100% !important; height:auto !important; display:block; }
+  .s-title { font-size:clamp(1.35rem,5.5vw,1.9rem); }
 }
