@@ -108,6 +108,20 @@
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent; background-clip:text;
 }
+/* ── BUTTON ARROW BADGE ───────────────────── */
+.btn-arrow-badge {
+  width:30px; height:30px; border-radius:50%;
+  background:#fff;
+  display:inline-flex; align-items:center; justify-content:center;
+  color:var(--primary); font-size:1rem; font-weight:800; flex-shrink:0;
+  box-shadow:0 2px 8px rgba(0,0,0,0.18);
+  transition:transform 0.22s var(--ease), box-shadow 0.22s;
+}
+.btn-primary:hover .btn-arrow-badge {
+  transform:translateX(4px);
+  box-shadow:0 4px 16px rgba(0,0,0,0.22);
+}
+
 /* Label + buttons on dark gradient hero */
 .hero .label { color:rgba(255,255,255,0.85); }
 .hero .label::before { background:rgba(255,255,255,0.45); }
@@ -634,7 +648,8 @@
         <div class="blue-bar"></div>
         <p class="visibal-desc" data-i18n="home_vs_desc">Patient retention &amp; marketing intelligence for dental clinics. Built on the same precision philosophy that drives all four HDH divisions.</p>
         <a href="visibal-plattform.html" class="btn btn-primary">
-          <span data-i18n="home_vs_cta">Explore VISIBAL Platform</span> <i class="ph ph-arrow-right"></i>
+          <span data-i18n="home_vs_cta">Explore VISIBAL Platform</span>
+          <span class="btn-arrow-badge"><i class="ph ph-arrow-right"></i></span>
         </a>
       </div>
       <div class="visibal-img-col reveal d2">
