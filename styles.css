@@ -930,6 +930,8 @@ footer::before {
   .hero-visual  { width:calc(100% + 3rem) !important; margin:0 -1.5rem !important; max-height:none !important; overflow:visible !important; }
   .hero-team-img { width:100% !important; height:auto !important; display:block; }
   .s-title { font-size:clamp(1.35rem,5.5vw,1.9rem); }
+  .s-sub  { font-size:0.88rem; line-height:1.7; }
+  .page-hero { padding:5rem 0 2.5rem !important; }
   /* ── Global card compaction on phones ── */
   .section       { padding:3rem 0; }
   .feature-card  { padding:1.25rem 1rem; }

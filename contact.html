@@ -93,7 +93,9 @@
 @media(max-width:768px){
   .contact-grid { grid-template-columns:1fr; }
   .contact-card.featured { grid-column:auto; grid-template-columns:1fr; }
-  .contact-hero { padding:7rem 0 4rem; }
+  .contact-hero { min-height:auto !important; padding:5.5rem 0 2.5rem; }
+  .contact-hero h1 { font-size:clamp(1.9rem,8vw,2.6rem); margin:0.65rem 0 0.85rem; }
+  .contact-hero p { font-size:0.9rem; line-height:1.7; }
   /* ── Card compaction ── */
   .contact-card          { padding:1.5rem; }
   .contact-card.featured { padding:1.5rem; gap:1.25rem; }
