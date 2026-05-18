@@ -867,3 +867,29 @@ footer::before {
 /* ── WILL-CHANGE PERF HINTS ──────────────────── */
 .div-card, .feature-card, .contact-card, .svc-card,
 .podcast-card, .dl-card { will-change:transform; }
+
+/* ═══════════════════════════════════════════════
+   MOBILE RESPONSIVE FIX LAYER v3
+   ═══════════════════════════════════════════════ */
+
+/* ── RESPONSIVE UTILITY GRID CLASSES ──────────
+   Add .rg-2 / .rg-3 / .rg-4 / .rg-5 to inline-
+   styled grids. !important beats inline styles.
+   ─────────────────────────────────────────────── */
+@media (max-width:900px) {
+  .rg-4, .rg-5 { grid-template-columns:1fr 1fr !important; }
+}
+@media (max-width:768px) {
+  .rg-2         { grid-template-columns:1fr !important; }
+  .rg-3         { grid-template-columns:1fr 1fr !important; }
+  /* page-hero: auto height prevents content clipping on mobile */
+  .page-hero    { height:auto !important; min-height:100svh; }
+  /* VISIBAL floating widgets overflow when layout stacks */
+  .vsfw         { display:none !important; }
+  .visibal-orb  { display:none; }
+}
+@media (max-width:600px) {
+  .rg-3, .rg-4, .rg-5 { grid-template-columns:1fr !important; }
+  /* hero-visual clamp(480px,…) overflows phones — cap at 80vw */
+  .hero-visual  { width:80vw !important; }
+}
