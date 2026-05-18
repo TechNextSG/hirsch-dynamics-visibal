@@ -245,6 +245,15 @@
   .case-stats { grid-template-columns:1fr 1fr; }
 }
 @media(max-width:600px) {
+  /* Compact case study card */
+  .case-card          { padding:1.25rem; }
+  .case-card::before  { display:none; }
+  .case-tag           { margin-bottom:0.75rem; padding:3px 10px; font-size:0.62rem; }
+  .case-body          { font-size:0.84rem; line-height:1.65; margin-bottom:1.1rem; }
+  .case-stat          { padding:0.85rem 0.5rem; }
+  .case-stat-n        { font-size:1.4rem; }
+  .case-stat-l        { font-size:0.65rem; }
+
   /* Compact conditions table */
   .cond-table td            { padding:0.55rem 0.75rem; font-size:0.78rem; }
   .cond-table td:first-child { width:110px; }
